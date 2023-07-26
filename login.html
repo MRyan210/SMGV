@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<title>Login - GREENLIGHT</title>
+	<link rel="stylesheet" type="text/css" href="login.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+	<form action="log.php" class="login-form" method="POST" >
+		<h1>Login</h1>
+
+		<div class="txtb">
+			<input type="text" name="Email" required="true">
+			<span data-placeholder="Email"></span>
+		</div>
+
+		<div class="txtb">
+		<input type="password"name="Password" required="true">
+			<span data-placeholder="Password" ></span>
+		</div>
+		<input type="submit" class="logbtn" value="Login">
+
+		<div class="bottom-text" id="SignUp">
+			Don't have an account? <span><a href="SignUp User.html">Sign up</a></span>
+		</div>
+		<div class="bottom2-text" id="HOME">
+			<span><a href="placeholder.html">HOME</a></span>
+		</div>
+		
+    </form>
+
+    <script type="text/javascript">
+    $(".txtb input").on("focus",function(){
+    	$(this).addClass("focus");
+    });	
+    $(".txtb input").on("blur",function(){
+    	if ($(this).val()=="")
+    	$(this).removeClass("focus");
+    });	
+    </script>
+
+</body>
+</html>
