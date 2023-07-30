@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -38,31 +39,32 @@
 		</div>
 		<ul class="list-unstyled component m-0">
 		  <li>
-		  <a href="AdminHome.html" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
-		  
+		  <a href="AdminHome.php" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
 		</li>
+		  
 		  <li class="dropdown">
+		  <li class="active">
 		  <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
 		  <i class="material-icons">inventory_2</i>Manage Stocks
 		  </a>
+		  </li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu1">
-		     <li><a href="#">Stock Menu <!--Leads to dashboard--></a></li>
-			 <li><a href="#">Manage Stocks </a></li>
+			 <li><a href="Admin-Manage Stocks.php">Manage Stocks </a></li>
 			 <li><a href="#">Add Stock Item</a></li>
 		  </ul>
 		  </li>
 		  
 		  
-		   <li class="dropdown">
+		  <li class="dropdown">
 		  <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
 		  <i class="material-icons">redeem</i>Vouchering
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
-		     <li><a href="#">Manage Voucher Batch</a></li>
-			 <li><a href="#">Manage vouchers</a></li>
-			 <li><a href="#">Generate Voucher code</a></li>
+		   <!--  <li><a href="#">Manage Voucher Batch</a></li> -->
+			 <li><a href="Admin-Manage Vouchers.php">Manage vouchers</a></li>
+			<!-- <li><a href="#">Generate Voucher code</a></li> -->
 		  </ul>
 		  </li>
 		  
@@ -72,7 +74,7 @@
 		  <i class="material-icons">business</i>Manage Business
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
-			 <li><a href="Admin-Manage Business.html">Manage Business</a></li>
+			 <li><a href="Admin-Manage Business.php">Manage Business</a></li>
 		  </ul>
 		  </li>
 		  
@@ -80,13 +82,11 @@
 		   <li class="dropdown">
 		  <a href="#homeSubmenu4" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <li class="active">
 		  <i class="material-icons">people</i>Manage User
 		  </a>
-		</li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu4">
 			 <li><a href="#">Attach User to Business</a></li>
-			 <li><a href="Admin- Manage Users.html">Manage Users</a></li>
+			 <li><a href="Admin- Manage Users.php">Manage Users</a></li>
 		  </ul>
 		  </li>
 		  
@@ -227,12 +227,12 @@
 					   <div class="table-title">
 					     <div class="row">
 						     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-							    <h2 class="ml-lg-2">Manage  Users</h2>
+							    <h2 class="ml-lg-2">Manage Stock</h2>
 							 </div>
 							 <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
 							   <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
 							   <i class="material-icons">&#xE147;</i>
-							   <span>Add New User</span>
+							   <span>Add Stock Item</span>
 							   </a>
 							   <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
 							   <i class="material-icons">&#xE15C;</i>
@@ -248,13 +248,9 @@
 							 <th><span class="custom-checkbox">
 							 <input type="checkbox" id="selectAll">
 							 <label for="selectAll"></label></th>
-							 <th>First Name</th>
-							 <th>Last Name</th>
-							 <th>National ID</th>
-							 <th>Gender</th>
-							 <th>DateofBirth</th>
-							 <th>PhoneNumber</th>
-							 <th>Email</th>
+							 <th>Item Name</th>
+							 <th>Price</th>
+							 <th>Quantity</th>
 							 </tr>
 						  </thead>
 						  
@@ -298,7 +294,7 @@
 <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
 
-	<form action="InserttAdmin.php" method="POST">
+	<form action="InsertStock.php" method="POST">
 	<div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Add User</h5>
@@ -308,45 +304,19 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-		    <label>First Name</label>
-			<input type="text" name = "FirstName" class="form-control" required="true">
+		    <label>Item Name</label>
+			<input type="text" name = "StockName" class="form-control" required="true">
 		</div>
 		<div class="form-group">
-		    <label>Last Name</label>
-			<input type="text" name="LastName" class="form-control" required="true">
+		    <label>Price</label>
+			<input type="text" name="StockPrice" class="form-control" required>
 		</div>
 
 		<div class="form-group">
-		    <label>National ID</label>
-			<input type="text" name="NationalID" class="form-control" required="true">
+		    <label>Quantity</label>
+			<input type="text" name="Quantity" class="form-control" required="true">
 		</div>
 
-		<div class="form-group">
-		    <label>Gender</label>
-			<select id ="Gender"  input type="submit" name="Gender" class="form-control" required="true">
-				<option value="Select" selected>Select Gender</option>
-				<option value="Male">Male</option>
-				<option value="Female">Female</option>
-				<option value="Other">Other</option>
-				</select>
-		</div>
-
-		<div class="form-group">
-		    <label>Date of Birth</label>
-			<input type="date" name="DateofBirth" class="form-control" required="true">
-		</div>
-		
-		<div class="form-group">
-		    <label>PhoneNumber</label>
-			<input type="text" name="PhoneNumber" class="form-control" required="true">
-		</div>
-
-		<div class="form-group">
-		    <label>Email</label>
-			<input type="emil" name="Email" class="form-control" required>
-		</div>
-		
-		
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -418,7 +388,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success">Delete</button>
+        <button type="submit" class="btn btn-success">Delete</button>
       </div>
     </div>
   </div>

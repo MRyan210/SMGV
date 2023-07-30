@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -38,7 +40,7 @@
 		</div>
 		<ul class="list-unstyled component m-0">
 		  <li>
-		  <a href="AdminHome.html" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
+		  <a href="AdminHome.php" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
 		</li>
 		  
 		  <li class="dropdown">
@@ -47,8 +49,7 @@
 		  <i class="material-icons">inventory_2</i>Manage Stocks
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu1">
-		     <li><a href="#">Stock Menu <!--Leads to dashboard--></a></li>
-			 <li><a href="#">Manage Stocks </a></li>
+			 <li><a href="Admin-Manage Stocks.php">Manage Stocks </a></li>
 			 <li><a href="#">Add Stock Item</a></li>
 		  </ul>
 		  </li>
@@ -57,24 +58,24 @@
 		   <li class="dropdown">
 		  <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
+		  <li class="active">
 		  <i class="material-icons">redeem</i>Vouchering
 		  </a>
+		</li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
-		     <li><a href="#">Manage Voucher Batch</a></li>
+		   <!--  <li><a href="#">Manage Voucher Batch</a></li> -->
 			 <li><a href="#">Manage vouchers</a></li>
-			 <li><a href="#">Generate Voucher code</a></li>
+			<!-- <li><a href="#">Generate Voucher code</a></li> -->
 		  </ul>
 		  </li>
 		  
 		   <li class="dropdown">
 		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <li class="active">
 		  <i class="material-icons">business</i>Manage Business
 		  </a>
-		</li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
-			 <li><a href="Admin-Manage Business.html">Manage Business</a></li>
+			 <li><a href="Admin-Manage Business.php">Manage Business</a></li>
 		  </ul>
 		  </li>
 		  
@@ -86,7 +87,7 @@
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu4">
 			 <li><a href="#">Attach User to Business</a></li>
-			 <li><a href="Admin- Manage Users.html">Manage Users</a></li>
+			 <li><a href="Admin- Manage Users.php">Manage Users</a></li>
 		  </ul>
 		  </li>
 		  
@@ -168,7 +169,7 @@
 						    <nav class="navbar p-0">
 							   <ul class="nav navbar-nav flex-row ml-auto">
 							   
-								<a href="index.html" class="nav-link">
+								<a href="index.php" class="nav-link">
 									<span class="material-icons text-white">home</span>
 								</a>
 							 
@@ -227,12 +228,12 @@
 					   <div class="table-title">
 					     <div class="row">
 						     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-							    <h2 class="ml-lg-2">Manage Business</h2>
+							    <h2 class="ml-lg-2">Manage Voucher</h2>
 							 </div>
 							 <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
 							   <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
 							   <i class="material-icons">&#xE147;</i>
-							   <span>Add New Business</span>
+							   <span>Add Voucher reciepient</span>
 							   </a>
 							   <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
 							   <i class="material-icons">&#xE15C;</i>
@@ -248,10 +249,9 @@
 							 <th><span class="custom-checkbox">
 							 <input type="checkbox" id="selectAll">
 							 <label for="selectAll"></label></th>
-							 <th>Business Name</th>
-							 <th>Business Email</th>
-							 <th>Location</th>
-							 <th>User</th>
+							 <th>Email</th>
+							 <th>Voucher Code</th>
+							 <th>Status</th>
 							 </tr>
 						  </thead>
 						  
@@ -295,35 +295,18 @@
 <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
 
-	<form action="InserttAdmin.php" method="POST">
+	<form action="VoucherSend.php" method="POST">
 	<div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add User</h5>
+        <h5 class="modal-title">Add Voucher reciepient</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-		    <label>Business Name</label>
-			<input type="text" name = "FirstName" class="form-control" required="true">
-		</div>
-		<div class="form-group">
-		    <label>Business Email</label>
-			<input type="emil" name="Email" class="form-control" required>
-		</div>
-
-		<div class="form-group">
-		    <label>Location</label>
-			<input type="text" name="NationalID" class="form-control" required="true">
-		</div>
-
-		<div class="form-group">
-		    <label>User</label>
-			<select id ="Gender"  input type="submit" name="Gender" class="form-control" required="true">
-				<option value="Select" selected>Select Gender</option>
-				<!--Add Php Script to fetch to dropdown list-->
-				</select>
+		    <label>Customer Email</label>
+			<input type="text" name = "StockName" class="form-control" required="true">
 		</div>
 
       </div>
@@ -344,38 +327,28 @@
 					   
 				   <!----edit-modal start--------->
 		<div class="modal fade" tabindex="-1" id="editEmployeeModal" role="dialog">
+			<form action="Voucheredit.php" method="POST">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit Employees</h5>
+        <h5 class="modal-title">Edit Voucher</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-		    <label>Name</label>
+		    <label>Status</label>
 			<input type="text" class="form-control" required>
 		</div>
-		<div class="form-group">
-		    <label>Email</label>
-			<input type="emil" class="form-control" required>
-		</div>
-		<div class="form-group">
-		    <label>Address</label>
-			<textarea class="form-control" required></textarea>
-		</div>
-		<div class="form-group">
-		    <label>Phone</label>
-			<input type="text" class="form-control" required>
-		</div>
-      </div>
+		
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-success">Save</button>
       </div>
     </div>
   </div>
+</form>
 </div>
 
 					   <!----edit-modal end--------->	   
@@ -384,9 +357,10 @@
 					 <!----delete-modal start--------->
 		<div class="modal fade" tabindex="-1" id="deleteEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
+	<form action="Voucherdelete.php" method="post">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Delete Employees</h5>
+        <h5 class="modal-title">Delete Voucher</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -400,6 +374,7 @@
         <button type="submit" class="btn btn-success">Delete</button>
       </div>
     </div>
+</form>
   </div>
 </div>
 

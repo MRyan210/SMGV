@@ -4,7 +4,7 @@ session_start();
 $dbserver = "localhost";
 $dbusername = "root";
 $password="";
-$dbname="stockmgmt";
+$dbname="stockmgmt1";
  
 $connect=mysqli_connect($dbserver,$dbusername,$password,$dbname);
 
@@ -16,10 +16,10 @@ $_SESSION["Email"] = "$Email";
 $sql="SELECT 
 		`Email`, `Password`,`Role`,`Status`
 		FROM `user`
-		WHERE `Email` = '$Email' AND `Password` = '$Password' AND `Status`='Active';";
+		WHERE `Email` = '$Email' AND `Password` = '$Password' AND `Status`='1';";
 
 
-$result = mysqli_query($connect,$sql);
+ $result = mysqli_query($connect,$sql);
 	try
 	{
 		$result = mysqli_query($connect,$sql);
@@ -30,26 +30,26 @@ $result = mysqli_query($connect,$sql);
 			$result = mysqli_fetch_array($result);
 
 			$userType = $result["Role"];
-			// echo $userType;
-						
+			echo $userType;
+						// 1=customer 2= business owner, 3= admin
 			switch ($userType){
-				// if they are an Employer
+				// if they are a customer
 				case 1:
 					$_SESSION['Email'] = "$Email";
 					header("location: index.php");
 					break;
-					// if they are a jobseeker
+					// if they are a business owner
 				case 2:
 					$_SESSION['Email'] = "$Email";
-					header("location: GREEN.php");
+					header("location: BusinessHome.html");
 					break;
 					 // if they are an admin
 				case 3:
 					$_SESSION['Email'] = "$Email";
-					header("location: session.php");
+					header("location: AdminHome.php");
 					
 					break;
-					//$currentUser = $_SESSION['Email'];
+					$currentUser = $_SESSION['Email'];
 				}
 			
 	
@@ -57,6 +57,9 @@ $result = mysqli_query($connect,$sql);
 		
 		else
 		{
+			echo "<script>
+			alert('Email or password is incorrect)'
+			</script>";
 			 header("location: login.html");	
 		}
 		

@@ -2,7 +2,7 @@
 $dbserver="localhost";
 $dbusername="root";
 $password="";
-$dbname="stockmgmt";
+$dbname="stockmgmt1";
 
 $connect=mysqli_connect($dbserver,$dbusername,$password,$dbname);
 

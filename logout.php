@@ -2,8 +2,8 @@
 
 include 'Log.php';
 
-	if ($_SESSION['email']) {
+	if ($_SESSION['Email']) {
 		session_destroy();
-		header("Location: greenlight_Landing.html");
+		header("Location: index.html");
 	}
 ?>
