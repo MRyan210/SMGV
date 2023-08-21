@@ -17,7 +17,7 @@ VALUES('".$StockName."','".$StockPrice."','".$Quantity."')";
 
 if(mysqli_query($connect,$insert)){
     echo "success";
-    header("Location: Admin-Manage Stocks.html");
+    header("Location: Admin-Manage Stocks.php");
 }
 else{
     echo"failure";

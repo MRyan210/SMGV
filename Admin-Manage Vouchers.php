@@ -1,5 +1,4 @@
 
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -251,11 +250,75 @@
 							 <label for="selectAll"></label></th>
 							 <th>Email</th>
 							 <th>Voucher Code</th>
+							 <th>Price Off</th>
 							 <th>Status</th>
 							 </tr>
 						  </thead>
 						  
 						 <!--to Put Menu Dashboards here-->
+						 <?php
+
+
+$dbserver="localhost";
+$dbusername="root";
+$password="";
+$dbname="stockmgmt1";
+
+$connect=mysqli_connect($dbserver,$dbusername,$password,$dbname);	
+
+
+// Read data from database table
+$sql = "SELECT * FROM `Vouchercode` WHERE `Status`= 1 ";
+$result = $connect->query($sql);
+
+
+
+if(!$result){
+	die("invalid Querry: ".$connect->error);
+
+}
+
+while($row = $result->fetch_assoc()){
+
+	echo"
+	<tr>
+		<td> $row[DateCreated]</td>
+		<td> $row[Email]</td>
+		<td> $row[VoucherCode]</td>
+		<td> $row[Status]</td>
+		<td> $row[Price]</td>
+		
+
+
+
+
+		
+		<th>
+		<a href='#editEmployeeModal?Email=$row[Email]' class='edit' data-toggle='modal'>
+	   <i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i>
+	   </a>
+
+	   <a href='#deleteEmployeeModal?Email=$row[Email]' class='delete' data-toggle='modal'>
+	   <i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i>
+	   </a>
+	 </th>
+
+
+
+
+		<a  class = 'edit' href='#editEmployeeModal?Email=$row[Email]'>Edit</a>
+		<a  class = 'delete' href='#deleteEmployeeModal?Email=$row[Email]'>Delete</a>
+
+
+
+
+
+	
+	</tr>
+	
+	";
+}?>
+
 						  <tbody>
 						     
 						  </tbody>
@@ -303,16 +366,28 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+<!--  Show voucher on modal page (to be fixed)
       <div class="modal-body">
+	  <div class="form-group">
+								<label>Coupon Code</label>
+								<input type="text" class="form-control" name="coupon" id="coupon" readonly="readonly" required="required" />
+								<br />
+								<button id="generate" class="btn btn-success" type="button"><span class="glyphicon glyphicon-random"></span> Generate</button> 
+							</div> -->
+
         <div class="form-group">
 		    <label>Customer Email</label>
-			<input type="text" name = "StockName" class="form-control" required="true">
+			<input type="text" name = "Email" class="form-control" required="true">
 		</div>
+							<div class="form-group">
+								<label>Discount</label>
+								<input type="number" class="form-control" name="discount" min="10" required="required"/>
+							</div>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-success">Add</button>
+        <button type="button" name=" " class="btn btn-success">Add</button>
       </div>
     </div>
 </form>
@@ -418,12 +493,16 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
    <script src="js/jquery-3.3.1.slim.min.js"></script>
    <script src="js/popper.min.js"></script>
+   <script src="Generate Coupon Code/js/bootstrap.js"></script>
    <script src="js/bootstrap.min.js"></script>
    <script src="js/jquery-3.3.1.min.js"></script>
   
   
-  <script type="text/javascript">
+   <script type="text/javascript">
        $(document).ready(function(){
+
+		
+
 	      $(".xp-menubar").on('click',function(){
 		    $("#sidebar").toggleClass('active');
 			$("#content").toggleClass('active');
@@ -432,6 +511,12 @@
 		  $('.xp-menubar,.body-overlay').on('click',function(){
 		     $("#sidebar,.body-overlay").toggleClass('show-nav');
 		  });
+
+		  $('#generate').on('click', function(){
+			$.get("GenertateVoucher.php", function(data){
+				$('#coupon').val(data);
+			});
+		});
 		  
 	   });
   </script>

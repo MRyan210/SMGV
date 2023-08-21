@@ -318,14 +318,6 @@
 			<input type="text" name="NationalID" class="form-control" required="true">
 		</div>
 
-		<div class="form-group">
-		    <label>User</label>
-			<select id ="Gender"  input type="submit" name="Gender" class="form-control" required="true">
-				<option value="Select" selected>Select Gender</option>
-				<!--Add Php Script to fetch to dropdown list-->
-				</select>
-		</div>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

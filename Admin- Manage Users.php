@@ -1,4 +1,8 @@
+<?php 
+session_start();
+	require 'conn.php';
 
+?>
 
 <!doctype html>
 <html lang="en">
@@ -24,7 +28,7 @@
       <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
 
   </head>
-  <body>
+  <body onload="table();">
   
 
 
@@ -246,20 +250,63 @@
 					   <table class="table table-striped table-hover">
 					      <thead>
 						     <tr>
-							 <th><span class="custom-checkbox">
-							 <input type="checkbox" id="selectAll">
-							 <label for="selectAll"></label></th>
+							<!-- <th><span class="custom-checkbox">
+							 <input type="checkbox" id="selectAll"> 
+							 <label for="selectAll"></label></th>-->
+							<b> <th>Date Created</th> </b>
 							 <th>First Name</th>
 							 <th>Last Name</th>
 							 <th>National ID</th>
 							 <th>Gender</th>
 							 <th>DateofBirth</th>
 							 <th>PhoneNumber</th>
-							 <th>Email</th>
+							 <th>Email</th> </b>
 							 </tr>
 						  </thead>
 						  
-						 <!--to Put Menu Dashboards here-->
+						 <!--to Put Menu Dashboards here -->
+
+
+<?php 
+                                    $query = "SELECT * FROM user WHERE Status = 1";
+                                    $query_run = mysqli_query($conn, $query);
+
+                                    if(mysqli_num_rows($query_run) > 0)
+                                    {
+                                        foreach($query_run as $User)
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td><?= $User['DateCreated']; ?></td>
+                                                <td><?= $User['FirstName']; ?></td>
+												<td><?= $User['LastName']; ?></td>
+												<td><?= $User['NationalID']; ?></td>
+												<td><?= $User['Gender']; ?></td>
+												<td><?= $User['DateofBirth']; ?></td>
+                                                <td><?= $User['Email']; ?></td>
+                                                <td><?= $User['Phonenumber']; ?></td>
+                                                
+												
+                                                <td>
+                                                  <!--  <a href="student-view.php?UserID=" class="btn btn-info btn-sm">View</a> -->
+
+                                                    <a href="UserEdit.php?UserID=<?= $User['UserID']; ?>" class="btn btn-success btn-sm">Edit</a>
+
+													<!-- Delete section -->
+													<a href="UserDelete.php?UserID=<?= $User['UserID']; ?>" class="btn btn-danger">Delete</a>
+                                                      <!--  <button type="submit" name="delete_User" value="<?= $User['UserID'];?>" class="btn btn-danger btn-sm">Delete</button> -->
+                                                    
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    else
+                                    {
+                                        echo "<h5> No Record Found </h5>";
+                                    }
+                                ?>
+
 						  <tbody>
 						     
 						  </tbody>
@@ -471,6 +518,21 @@
   
   <script type="text/javascript">
        $(document).ready(function(){
+		$('.edit').click(function(){
+			var PhoneNumber = $(this).data('id');
+			$('#editEmployeeModal').load('')
+			$('#editModal').load('editEmployeeModal.php?Phonenumber=' + phoneNumber);
+        });
+
+        // Handle the click event on delete links
+        $('.delete').click(function () {
+            var phoneNumber = $(this).data('id');
+            // Load the delete modal content dynamically using AJAX
+            $('#deleteEmployeeModal').load('deleteEmployeeModal.php?Phonenumber=' + phoneNumber);
+     
+   
+
+		})
 	      $(".xp-menubar").on('click',function(){
 		    $("#sidebar").toggleClass('active');
 			$("#content").toggleClass('active');

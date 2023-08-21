@@ -11,7 +11,7 @@ require 'PHPMailer/src/SMTP.php';
 
 $mail = new PHPMailer(true);
 
-if(ISSET($_POST['submit'])){
+if(ISSET($_POST['save'])){
     $Email = $_POST['Email'];
     $coupon_code = $_POST['coupon'];
     $discount = $_POST['discount'];

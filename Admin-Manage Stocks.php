@@ -51,7 +51,6 @@
 		  </li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu1">
 			 <li><a href="Admin-Manage Stocks.php">Manage Stocks </a></li>
-			 <li><a href="#">Add Stock Item</a></li>
 		  </ul>
 		  </li>
 		  
