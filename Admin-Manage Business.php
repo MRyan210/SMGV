@@ -1,3 +1,10 @@
+<?php 
+	require 'conn.php';
+	session_start()
+
+
+?>
+
 
 <!doctype html>
 <html lang="en">
@@ -245,9 +252,8 @@
 					   <table class="table table-striped table-hover">
 					      <thead>
 						     <tr>
-							 <th><span class="custom-checkbox">
-							 <input type="checkbox" id="selectAll">
-							 <label for="selectAll"></label></th>
+							
+							 <th>Date Created</th>
 							 <th>Business Name</th>
 							 <th>Business Email</th>
 							 <th>Location</th>
@@ -257,7 +263,41 @@
 						  
 						 <!--to Put Menu Dashboards here-->
 						  <tbody>
-						     
+						     <?php 
+                                    $query = "SELECT * FROM business WHERE Status = 1";
+                                    $query_run = mysqli_query($conn, $query);
+
+                                    if(mysqli_num_rows($query_run) > 0)
+                                    {
+                                        foreach($query_run as $User)
+                                        {
+                                            ?>
+                                            <tr>
+											    <td><?= $User['DateCreated']; ?></td>
+                                                <td><?= $User['Bname']; ?></td>
+                                                <td><?= $User['Bemail']; ?></td>
+												<td><?= $User['Location']; ?></td>
+												<td><?= $User['User']; ?></td>
+                                                <td>
+
+                                                  <!--  <a href="student-view.php?UserID=" class="btn btn-info btn-sm">View</a> -->
+
+                                                    <a href="BusinessEdit.php?UserID=<?= $User['UserID']; ?>" class="btn btn-success btn-sm">Edit</a>
+
+													<!-- Delete section -->
+													<a href="BusinessDelete.php?UserID=<?= $User['UserID']; ?>" class="btn btn-danger">Delete</a>
+                                                      <!--  <button type="submit" name="delete_User" value="<?= $User['UserID'];?>" class="btn btn-danger btn-sm">Delete</button> -->
+                                                    
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    else
+                                    {
+                                        echo "<h5> No Record Found </h5>";
+                                    }
+                                ?>
 						  </tbody>
 						  
 					      
