@@ -267,7 +267,10 @@ session_start();
 						 <!--to Put Menu Dashboards here -->
 
 
-<?php 
+
+
+						  <tbody>
+						  <?php 
                                     $query = "SELECT * FROM user WHERE Status = 1";
                                     $query_run = mysqli_query($conn, $query);
 
@@ -306,9 +309,6 @@ session_start();
                                         echo "<h5> No Record Found </h5>";
                                     }
                                 ?>
-
-						  <tbody>
-						     
 						  </tbody>
 						  
 					      

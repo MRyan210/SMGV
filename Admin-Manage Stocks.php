@@ -1,3 +1,9 @@
+<?php 
+	require 'conn.php';
+	session_start()
+
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -244,9 +250,7 @@
 					   <table class="table table-striped table-hover">
 					      <thead>
 						     <tr>
-							 <th><span class="custom-checkbox">
-							 <input type="checkbox" id="selectAll">
-							 <label for="selectAll"></label></th>
+							 
 							 <th>Item Name</th>
 							 <th>Price</th>
 							 <th>Quantity</th>
@@ -255,7 +259,34 @@
 						  
 						 <!--to Put Menu Dashboards here-->
 						  <tbody>
-						     
+						  <?php 
+                                    $query = "SELECT * FROM stockitem WHERE Quantity >= 0";
+                                    $query_run = mysqli_query($conn, $query);
+
+                                    if(mysqli_num_rows($query_run) > 0)
+                                    {
+                                        foreach($query_run as $User)
+                                        {
+                                            ?>
+                                            <tr>
+											    <td><?= $User['StockName']; ?></td>
+                                                <td><?= $User['StockPrice']; ?></td>
+                                                <td><?= $User['Quantity']; ?></td>
+                                                <td>
+                                                    <a href="StockEdit.php?StockID=<?= $User['StockID']; ?>" class="btn btn-success btn-sm">Edit</a>
+
+													<!-- Delete section -->
+													<a href="StockDelete.php?StockID=<?= $User['StockID']; ?>" class="btn btn-danger">Delete</a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    else
+                                    {
+                                        echo "<h5> No Record Found </h5>";
+                                    }
+                                ?>
 						  </tbody>
 						  
 					      

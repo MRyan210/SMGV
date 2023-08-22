@@ -2,29 +2,22 @@
 $dbserver="localhost";
 $dbusername="root";
 $password="";
-$dbname="stockmgmt";
+$dbname="stockmgmt1";
 
 $connect=mysqli_connect($dbserver,$dbusername,$password,$dbname);
 
 
-$FirstName = $_POST["FirstName"];
-$LastName = $_POST["LastName"];
-$Email = $_POST["Email"];
-$DateofBirth = $_POST["DateofBirth"];
-$NationalID =$_POST["NationalID"];
-$Gender=$_POST["Gender"];
-$PhoneNumber = $_POST["PhoneNumber"];
-$Password=$_POST["Password"];
+$Bname = $_POST["Bname"];
+$Bemail = $_POST["Bemail"];
+$Location = $_POST["Location"];
+$Status = 1;
 
-$Password = sha1($Password);
-
-$insert="INSERT INTO `user`(`FirstName`, `LastName`, `NationalID`, `Gender`, `DateofBirth`, `Phonenumber`, `Email`, `Password`, `Role`, `Status`)
-VALUES('".$FirstName."','".$LastName."','".$NationalID."','".$Gender."','".$DateOfBirth."','".$PhoneNumber."','".$Email."','".$Password."','1','1')";
+$insert="INSERT INTO `business`(`Bname`, `Bemail`, `Location`, `Status`) VALUES('".$Bname."','".$Bemail."','".$Location."','".$Status."')";
 
 
 if(mysqli_query($connect,$insert)){
     echo "success";
-    header("Location: login.html");
+    header("Location: Admin- Manage Business.php");
 }
 else{
     echo"failure";

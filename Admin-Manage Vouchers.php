@@ -1,3 +1,8 @@
+<?php 
+session_start();
+	require 'conn.php';
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -248,6 +253,7 @@
 							 <th><span class="custom-checkbox">
 							 <input type="checkbox" id="selectAll">
 							 <label for="selectAll"></label></th>
+							 <th>DateCreated</th>
 							 <th>Email</th>
 							 <th>Voucher Code</th>
 							 <th>Price Off</th>
@@ -256,70 +262,46 @@
 						  </thead>
 						  
 						 <!--to Put Menu Dashboards here-->
-						 <?php
+						 <tbody>
+						 <?php 
+                                    $query = "SELECT * FROM vouchercode WHERE Status = 'Active' ";
+                                    $query_run = mysqli_query($conn, $query);
 
+                                    if(mysqli_num_rows($query_run) > 0)
+                                    {
+                                        foreach($query_run as $Voucher)
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td><?= $Voucher['DateCreated']; ?></td>
+                                                <td><?= $Voucher['VoucherCode']; ?></td>
+												<td><?= $Voucher['Status']; ?></td>
+												<td><?= $Voucher['NationalID']; ?></td>
+												<td><?= $Voucher['Email']; ?></td>
+												
+                                                
+												
+                                                <td>
+                                                  <!--  <a href="student-view.php?UserID=" class="btn btn-info btn-sm">View</a> -->
 
-$dbserver="localhost";
-$dbusername="root";
-$password="";
-$dbname="stockmgmt1";
+                                                    <a href="UserEdit.php?UserID=<?= $Voucher['VoucherID']; ?>" class="btn btn-success btn-sm">Edit</a>
 
-$connect=mysqli_connect($dbserver,$dbusername,$password,$dbname);	
+													<!-- Delete section -->
+													<a href="UserDelete.php?UserID=<?= $Voucher['VoucherID']; ?>" class="btn btn-danger">Delete</a>
+                                                      <!--  <button type="submit" name="delete_User" value="<?= $User['UserID'];?>" class="btn btn-danger btn-sm">Delete</button> -->
+                                                    
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    else
+                                    {
+                                        echo "<h5> No Record Found </h5>";
+                                    }
+                                ?>
 
-
-// Read data from database table
-$sql = "SELECT * FROM `Vouchercode` WHERE `Status`= 1 ";
-$result = $connect->query($sql);
-
-
-
-if(!$result){
-	die("invalid Querry: ".$connect->error);
-
-}
-
-while($row = $result->fetch_assoc()){
-
-	echo"
-	<tr>
-		<td> $row[DateCreated]</td>
-		<td> $row[Email]</td>
-		<td> $row[VoucherCode]</td>
-		<td> $row[Status]</td>
-		<td> $row[Price]</td>
-		
-
-
-
-
-		
-		<th>
-		<a href='#editEmployeeModal?Email=$row[Email]' class='edit' data-toggle='modal'>
-	   <i class='material-icons' data-toggle='tooltip' title='Edit'>&#xE254;</i>
-	   </a>
-
-	   <a href='#deleteEmployeeModal?Email=$row[Email]' class='delete' data-toggle='modal'>
-	   <i class='material-icons' data-toggle='tooltip' title='Delete'>&#xE872;</i>
-	   </a>
-	 </th>
-
-
-
-
-		<a  class = 'edit' href='#editEmployeeModal?Email=$row[Email]'>Edit</a>
-		<a  class = 'delete' href='#deleteEmployeeModal?Email=$row[Email]'>Delete</a>
-
-
-
-
-
-	
-	</tr>
-	
-	";
-}?>
-
-						  <tbody>
+						  
 						     
 						  </tbody>
 						  
@@ -354,7 +336,7 @@ while($row = $result->fetch_assoc()){
 		
 					<!----add-modal start--------->
 
-		
+<!--		
 <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
 
@@ -366,14 +348,14 @@ while($row = $result->fetch_assoc()){
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-<!--  Show voucher on modal page (to be fixed)
+  Show voucher on modal page (to be fixed) 
       <div class="modal-body">
-	  <div class="form-group">
+	 <div class="form-group">
 								<label>Coupon Code</label>
 								<input type="text" class="form-control" name="coupon" id="coupon" readonly="readonly" required="required" />
 								<br />
 								<button id="generate" class="btn btn-success" type="button"><span class="glyphicon glyphicon-random"></span> Generate</button> 
-							</div> -->
+							</div> 
 
         <div class="form-group">
 		    <label>Customer Email</label>
@@ -387,12 +369,12 @@ while($row = $result->fetch_assoc()){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" name=" " class="btn btn-success">Add</button>
+        <button type="button" name=" save" class="btn btn-success">Add</button>
       </div>
     </div>
 </form>
   </div>
-</div>
+</div> -->
 
 					   <!----edit-modal end--------->
 					   
@@ -496,12 +478,17 @@ while($row = $result->fetch_assoc()){
    <script src="Generate Coupon Code/js/bootstrap.js"></script>
    <script src="js/bootstrap.min.js"></script>
    <script src="js/jquery-3.3.1.min.js"></script>
+   
   
   
    <script type="text/javascript">
        $(document).ready(function(){
 
-		
+		$('#generate').on('click', function(){
+			$.get("GenertateVoucher.php", function(data){
+				$('#coupon').val(data);
+			});
+		});
 
 	      $(".xp-menubar").on('click',function(){
 		    $("#sidebar").toggleClass('active');
@@ -511,12 +498,6 @@ while($row = $result->fetch_assoc()){
 		  $('.xp-menubar,.body-overlay').on('click',function(){
 		     $("#sidebar,.body-overlay").toggleClass('show-nav');
 		  });
-
-		  $('#generate').on('click', function(){
-			$.get("GenertateVoucher.php", function(data){
-				$('#coupon').val(data);
-			});
-		});
 		  
 	   });
   </script>

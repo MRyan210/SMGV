@@ -13,10 +13,10 @@ $mail = new PHPMailer(true);
 
 if(ISSET($_POST['submit'])){
     $Email = $_POST['Email'];
-    $coupon_code = $_POST['coupon'];
-    $discount = $_POST['discount'];
-    $status = "Valid";
-    $query = mysqli_query($conn, "SELECT * FROM `vouchercode` WHERE `VoucherCode` = '$coupon_code'") or die(mysqli_error());
+    $VoucherCode = $_POST['VoucherCode'];
+    $Discount = $_POST['Discount'];
+    $Status = "Active";
+    $query = mysqli_query($conn, "SELECT * FROM `vouchercode` WHERE `VoucherCode` = '$VoucherCode'") or die(mysqli_error());
     $row = mysqli_num_rows($query);
     
 
@@ -26,7 +26,7 @@ if(ISSET($_POST['submit'])){
         echo "<script>alert('Coupon Already Use')</script>";
         echo "<script>window.location = 'Admin-Manage Vouchers.php'</script>";
     }else{
-        mysqli_query($conn, "INSERT INTO `vouchercode`(`VoucherCode`, `Price`, `Status`) VALUES('', '$coupon_code', '$discount', '$status')") or die(mysqli_error());
+        mysqli_query($conn, "INSERT INTO `vouchercode`(`VoucherCode`,`Email`, `Price`, `Status`) VALUES('', '$VoucherCode', '$Discount','$Email', '$Status')") or die(mysqli_error());
         echo "<script>alert('Coupon Saved!')</script>";
         echo "<script>window.location = 'Admin-Manage Vouchers.php'</script>";
 
@@ -54,10 +54,11 @@ if(ISSET($_POST['submit'])){
             
             //Content
             $mail->isHTML(true);                                  
-            $mail->Subject = 'Voucher Code';
-            $mail->Body    ="Hello Dear Customer, Here is your Voucher code: $coupon_code <br>
-            Visit the business at any time to redeem the voucher code and to enjoy the discount Worth : Ksh $discount ";
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->Subject = 'Voucher Code from SMGV';
+            $mail->Body    ="Hello Dear Customer, Here is your Voucher code: $VoucherCode <br>
+            Visit the business at any time to redeem the voucher code and to enjoy the discount Worth : Ksh $Discount ";
+            $mail->AltBody = "Hello Dear Customer, Here is your Voucher code: $VoucherCode <br>
+            Visit the business at any time to redeem the voucher code and to enjoy the discount Worth : Ksh $Discount ";
         
             $mail->send();
             echo 'Message has been sent';
