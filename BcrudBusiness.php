@@ -42,7 +42,7 @@ if(isset($_POST['update_Business']))
     if($query_run)
     {
         $_SESSION['message'] = "Business Updated Successfully";
-        header("Location: Admin-Manage Business.php");
+        header("Location: Busine-Manage Business.php");
         exit(0);
     }
     else
