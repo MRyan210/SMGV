@@ -1,4 +1,5 @@
-<?php require 'Session.php';?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -67,7 +68,7 @@
 		</div>
 		<ul class="list-unstyled component m-0">
 		  <li class="active">
-		  <a href="AdminHome.html" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
+		  <a href="BusinessHome.php" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
 		  </li>
 		  
 		  <li class="dropdown">
@@ -76,46 +77,23 @@
 		  <i class="material-icons">inventory_2</i>Manage Stocks
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu1">
-		     <li><a href="#">Stock Menu <!--Leads to dashboard--></a></li>
-			 <li><a href="#">Manage Stocks </a></li>
-			 <li><a href="#">Add Stock Item</a></li>
+			 <li><a href="Business-Manage Stocks.php">Manage Stocks </a></li>
 		  </ul>
 		  </li>
 		  
 		  
-		   <li class="dropdown">
+		  <li class="dropdown">
 		  <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
 		  <i class="material-icons">redeem</i>Vouchering
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
-		   <!--  <li><a href="#">Manage Voucher Batch</a></li> -->
-			 <li><a href="Admin-Manage Vouchers.html">Manage vouchers</a></li>
-			<!-- <li><a href="#">Generate Voucher code</a></li> -->
+			 <li><a href="Business-Manage Vouchers.php">Manage vouchers</a></li>
+			 <li><a href="Business-Manage Vouchers.php">Redeem vouchers</a></li>
+
 		  </ul>
 		  </li>
-		  
-		   <li class="dropdown">
-		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">business</i>Manage Business
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
-			 <li><a href="Admin-Manage Business.html">Manage Business</a></li>
-		  </ul>
-		  </li>
-		  
-		  
-		   <li class="dropdown">
-		  <a href="#homeSubmenu4" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">people</i>Manage User
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu4">
-			 <li><a href="#">Attach User to Business</a></li>
-			 <li><a href="Admin- Manage Users.html">Manage Users</a></li>
-		  </ul>
-		  </li>
+
 		  
 		   <!-- <li class="dropdown">
 		  <a href="#homeSubmenu5" data-toggle="collapse" aria-expanded="false" 
@@ -195,7 +173,7 @@
 						    <nav class="navbar p-0">
 							   <ul class="nav navbar-nav flex-row ml-auto">
 							   
-								<a href="index.html" class="nav-link">
+								<a href="index.php" class="nav-link">
 									<span class="material-icons text-white">home</span>
 								</a>
 							 
@@ -234,7 +212,7 @@
 				 <div class="xp-breadcrumbbar text-center">
 				    <h4 class="page-title">Dashboard</h4>
 					<ol class="breadcrumb">
-					  <li class="breadcrumb-item active" aria-curent="page"> Admin Dashboard</li>
+					  <li class="breadcrumb-item active" aria-curent="page"> Business Dashboard</li>
 					</ol>
 				 </div>
 				 
@@ -269,9 +247,9 @@
                 Manage Stocks
               </h4>
               <p>
-                Manage Stocks that are owned by a business.
+                Manage Stocks that are owned by your business.
               </p>
-              <a href="">
+              <a href="Business-Manage Stocks.php">
                 Select 
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 
@@ -289,9 +267,9 @@
                 Vouchering
               </h4>
               <p>
-                Manage Vouchers for businesses on the system.
+                Manage Vouchers for your businesses.
               </p>
-              <a href="Admin-Manage Vouchers.html">
+              <a href="Business-Manage Vouchers.html">
                 Select
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 
@@ -300,68 +278,7 @@
           </div>
         </div>
 
-        <div class="col-md-6 col-lg-4 ">
-          <div class="box ">
-            <div class="img-box">
-              <img src="images/P2.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h4>
-                Manage Business
-              </h4>
-              <p>
-                Manage Businesses on the system.
-              </p>
-              <a href="Admin-Manage Business.html">
-                Select
-                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-
-              </a>
-            </div>
-          </div>
-        </div>
-
-		<div class="col-md-6 col-lg-4 ">
-			<div class="box ">
-			  <div class="img-box">
-				<img src="images/warehouse-4.png" alt="">
-			  </div>
-			  <div class="detail-box">
-				<h4>
-				  Stock Item No.
-				</h4>
-				<p>
-				  See total stock numbers on the system
-				</p>
-				<a href="">
-				  Select
-				  <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-  
-				</a>
-			  </div>
-			</div>
-		  </div>
-
-		  <div class="col-md-6 col-lg-4 ">
-			<div class="box ">
-			  <div class="img-box">
-				<img src="images/User.png" alt="">
-			  </div>
-			  <div class="detail-box">
-				<h4>
-				  Manage Users
-				</h4>
-				<p>
-				  Manage Users on the system
-				</p>
-				<a href="Admin- Manage Users.html">
-				  Select
-				  <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-  
-				</a>
-			  </div>
-			</div>
-		  </div>
+		
 
       </div>
     </div>

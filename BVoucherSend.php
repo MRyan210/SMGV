@@ -24,11 +24,11 @@ if(ISSET($_POST['save'])){
 
     if($row > 0){
         echo "<script>alert('Coupon Already Use')</script>";
-        echo "<script>window.location = 'Admin-Manage Vouchers.php'</script>";
+        echo "<script>window.location = 'Business-Manage Vouchers.php'</script>";
     }else{
         mysqli_query($conn, "INSERT INTO `vouchercode`(`Email`,`VoucherCode`, `Discount`, `Status`) VALUES('$Email', '$VoucherCode', '$Discount', '$Status')") or die(mysqli_error());
         echo "<script>alert('Coupon Saved!')</script>";
-        echo "<script>window.location = 'Admin-Manage Vouchers.php'</script>";
+        echo "<script>window.location = 'Business-Manage Vouchers.php'</script>";
 
     }
 
@@ -56,9 +56,9 @@ if(ISSET($_POST['save'])){
             $mail->isHTML(true);                                  
             $mail->Subject = 'Voucher Code from SMGV';
             $mail->Body    ="Hello Dear Customer, Here is your Voucher code: $VoucherCode <br>
-            Visit the business at any time to redeem the voucher code and to enjoy the discount Worth : Ksh $Discount ";
+            Visit the business at any time to redeem the voucher code and to enjoy the discount Worth :  $Discount% ";
             $mail->AltBody = "Hello Dear Customer, Here is your Voucher code: $VoucherCode <br>
-            Visit the business at any time to redeem the voucher code and to enjoy the discount Worth : Ksh $Discount ";
+            Visit the business at any time to redeem the voucher code and to enjoy the discount Worth :  $Discount% ";
         
             $mail->send();
             echo 'Message has been sent';

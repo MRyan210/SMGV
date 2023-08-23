@@ -277,15 +277,15 @@
                                                 <td><?= $User['Bname']; ?></td>
                                                 <td><?= $User['Bemail']; ?></td>
 												<td><?= $User['Location']; ?></td>
-												<td><?= $User['User']; ?></td>
+												
                                                 <td>
 
                                                   <!--  <a href="student-view.php?UserID=" class="btn btn-info btn-sm">View</a> -->
 
-                                                    <a href="BusinessEdit.php?UserID=<?= $User['UserID']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                                    <a href="BusinessEdit.php?BusinessID=<?= $User['BusinessID']; ?>" class="btn btn-success btn-sm">Edit</a>
 
 													<!-- Delete section -->
-													<a href="BusinessDelete.php?UserID=<?= $User['UserID']; ?>" class="btn btn-danger">Delete</a>
+													<a href="BusinessDelete.php?BusinessID=<?= $User['BusinessID']; ?>" class="btn btn-danger">Delete</a>
                                                       <!--  <button type="submit" name="delete_User" value="<?= $User['UserID'];?>" class="btn btn-danger btn-sm">Delete</button> -->
                                                     
                                                 </td>
@@ -335,7 +335,7 @@
 <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
 
-	<form action="InserttAdmin.php" method="POST">
+	<form action="InsertBusiness.php" method="POST">
 	<div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Add User</h5>
@@ -346,16 +346,16 @@
       <div class="modal-body">
         <div class="form-group">
 		    <label>Business Name</label>
-			<input type="text" name = "FirstName" class="form-control" required="true">
+			<input type="text" name = "Bname" class="form-control" required="true">
 		</div>
 		<div class="form-group">
 		    <label>Business Email</label>
-			<input type="emil" name="Email" class="form-control" required>
+			<input type="emil" name="Bemail" class="form-control" required>
 		</div>
 
 		<div class="form-group">
 		    <label>Location</label>
-			<input type="text" name="NationalID" class="form-control" required="true">
+			<input type="text" name="Location" class="form-control" required="true">
 		</div>
 
       </div>

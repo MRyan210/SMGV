@@ -13,7 +13,7 @@ require 'conn.php';
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Student Edit</title>
+    <title>Delete Stock</title>
 </head>
 <body>
   
@@ -25,8 +25,8 @@ require 'conn.php';
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Student Edit 
-                            <a href="Admin- Manage Userscopy.php" class="btn btn-danger float-end">BACK</a>
+                        <h4>Delete User
+                            <a href="Admin- Manage Users.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">

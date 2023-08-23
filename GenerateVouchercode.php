@@ -5,5 +5,5 @@
 		return $coupon;
 	}
 	
-	echo coupon(10);
+	echo coupon(6);
 ?>

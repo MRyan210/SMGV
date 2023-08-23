@@ -2,57 +2,55 @@
 session_start();
 require 'conn.php';
 
-if(isset($_POST['delete_User']))
+if(isset($_POST['delete_Voucher']))
 {
-    $FirstName = mysqli_real_escape_string($conn, $_POST['FirstName']);
-    $LastName = mysqli_real_escape_string($conn, $_POST['LastName']);
-    $Email = mysqli_real_escape_string($conn, $_POST['Email']);
-    $Phonenumber = mysqli_real_escape_string($conn, $_POST['Phonenumber']);
-    $DateofBirth = mysqli_real_escape_string($conn, $_POST['DateofBirth']);
-    $NationalID = mysqli_real_escape_string($conn, $_POST['NationalID']);
     
+    $VoucherID = mysqli_real_escape_string($conn, $_POST['delete_Voucher']);
+   
 
-    $query = "UPDATE user SET Status=2 WHERE NationalID='$NationalID' ";
+    $query = "DELETE FROM vouchercode WHERE VoucherID='$VoucherID' ";
     $query_run = mysqli_query($conn, $query);
+
 
     if($query_run)
     {
-        $_SESSION['message'] = "User Deleted Successfully";
-        header("Location: Admin- Manage Users.php");
+        $_SESSION['message'] = "Voucher Deleted Successfully";
+        header("Location: Admin-Manage Vouchers.php");
         exit(0);
     }
     else
     {
-        $_SESSION['message'] = "User Not Deleted";
-        header("Location: Admin- Manage Users.php");
+        $_SESSION['message'] = "Voucher Not Deleted";
+        header("Location: Admin-Manage Vouchers.php");
         exit(0);
     }
 }
 
-if(isset($_POST['update_User']))
+
+
+
+
+if(isset($_POST['update_Voucher']))
 {
+    $VoucherID = mysqli_real_escape_string($conn, $_POST['VoucherID']);
+    $VoucherCode = mysqli_real_escape_string($conn, $_POST['VoucherCode']);
+    $Email = mysqli_real_escape_string($conn, $_POST['Email']);
+    $Status = mysqli_real_escape_string($conn, $_POST['Status']);
     
 
-    $FirstName = mysqli_real_escape_string($conn, $_POST['FirstName']);
-    $LastName = mysqli_real_escape_string($conn, $_POST['LastName']);
-    $Email = mysqli_real_escape_string($conn, $_POST['Email']);
-    $Phonenumber = mysqli_real_escape_string($conn, $_POST['Phonenumber']);
-    $DateofBirth = mysqli_real_escape_string($conn, $_POST['DateofBirth']);
-    $NationalID = mysqli_real_escape_string($conn, $_POST['NationalID']);
-
-    $query = "UPDATE user SET FirstName='$FirstName',LastName='$LastName',Email = '$Email' ,Phonenumber='$Phonenumber',DateofBirth='$DateofBirth' WHERE NationalID='$NationalID' ";
+    $query = "UPDATE vouchercode SET VoucherCode='$VoucherCode',Email = '$Email' ,Status='Redeemed'WHERE VoucherID='$VoucherID' ";
     $query_run = mysqli_query($conn, $query);
 
     if($query_run)
     {
-        $_SESSION['message'] = "Student Updated Successfully";
-        header("Location: Admin- Manage Users.php");
+        $_SESSION['message'] = "Voucher Redeemed Successfully";
+        header("Location: Admin-Manage Vouchers.php");
         exit(0);
     }
     else
     {
         $_SESSION['message'] = "Student Not Updated";
-        header("Location: Admin- Manage Users.php");
+        header("Location: Admin-Manage Vouchers.php");
         exit(0);
     }
 

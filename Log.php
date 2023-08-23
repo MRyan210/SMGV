@@ -41,7 +41,7 @@ $sql="SELECT
 					// if they are a business owner
 				case 2:
 					$_SESSION['Email'] = "$Email";
-					header("location: BusinessHome.html");
+					header("location: BusinessHome.php");
 					break;
 					 // if they are an admin
 				case 3:

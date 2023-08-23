@@ -13,7 +13,7 @@ require 'conn.php';
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Student Edit</title>
+    <title>Edit Business</title>
 </head>
 <body>
   
@@ -26,51 +26,42 @@ require 'conn.php';
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit User
-                            <a href="Admin- Manage Users.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="Admin-Manage Business.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
 
                         <?php
-                        if(isset($_GET['UserID']))
+                        if(isset($_GET['BusinessID']))
                         {
-                            $UserID = mysqli_real_escape_string($conn, $_GET['UserID']);
-                            $query = "SELECT * FROM user WHERE  `UserID` ='$UserID' ";
+                            $BusinessID = mysqli_real_escape_string($conn, $_GET['BusinessID']);
+                            $query = "SELECT * FROM business WHERE  `BusinessID` ='$BusinessID' ";
                             $query_run = mysqli_query($conn, $query);
 
                             if(mysqli_num_rows($query_run) > 0)
                             {
-                                $User = mysqli_fetch_array($query_run);
+                                $BusinessID = mysqli_fetch_array($query_run);
                                 ?>
-                                <form action="crud.php" method="POST">
-                                    <input type="hidden" name="UserID" value="<?= $User['UserID']; ?>">
+                                <form action="crudBusiness.php" method="POST">
+                                    <input type="hidden" name="BusinessID" value="<?= $BusinessID['BusinessID']; ?>">
 
                                     <div class="mb-3">
-                                        <label>First Name</label>
-                                        <input type="text" name="FirstName" value="<?=$User['FirstName'];?>" class="form-control">
+                                        <label>Business Name</label>
+                                        <input type="text" name="Bname" value="<?=$BusinessID['Bname'];?>" class="form-control">
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Last Name</label>
-                                        <input type="text" name="LastName" value="<?=$User['LastName'];?>" class="form-control">
-                                    </div>
+
                                     <div class="mb-3">
                                         <label>Email</label>
-                                        <input type="email" name="Email" value="<?=$User['Email'];?>" class="form-control">
+                                        <input type="email" name="Bemail" value="<?=$BusinessID['Bemail'];?>" class="form-control">
                                     </div>
+
                                     <div class="mb-3">
-                                        <label>Phonenumber</label>
-                                        <input type="text" name="Phonenumber" value="<?=$User['Phonenumber'];?>" class="form-control">
+                                        <label>Location</label>
+                                        <input type="text" name="Location" value="<?=$BusinessID['Location'];?>" class="form-control">
                                     </div>
+                                    
                                     <div class="mb-3">
-                                        <label>NationalID</label>
-                                        <input type="email" readonly    name="NationalID" value="<?=$User['NationalID'];?>" class="form-control">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Date of Birth</label>
-                                        <input type="date" name="DateofBirth" value="<?=$User['DateofBirth'];?>" class="form-control">
-                                    </div>
-                                    <div class="mb-3">
-                                        <button type="submit" name="update_User" class="btn btn-primary">
+                                        <button type="submit" name="update_Business" class="btn btn-primary">
                                             Update
                                         </button>
                                     </div>

@@ -43,7 +43,7 @@ require 'conn.php';
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <button type="submit" name="submit" class="btn btn-primary">
+                                        <button type="submit" name="save" class="btn btn-primary">
                                             Send Voucher Code
                                         </button>
                                     </div>
@@ -57,5 +57,17 @@ require 'conn.php';
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function(){
+
+		$('#generate').on('click', function(){
+			$.get("GenertateVoucher.php", function(data){
+				$('#coupon').val(data);
+			});
+		});
+    });
+  </script>
+  
+
 </body>
 </html>

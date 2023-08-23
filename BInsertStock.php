@@ -6,18 +6,18 @@ $dbname="stockmgmt1";
 
 $connect=mysqli_connect($dbserver,$dbusername,$password,$dbname);
 
+$StockName =$_POST["StockName"];
+$StockPrice=$_POST["StockPrice"];
+$Quantity = $_POST["Quantity"];
 
-$Bname = $_POST["Bname"];
-$Bemail = $_POST["Bemail"];
-$Location = $_POST["Location"];
-$Status = 1;
 
-$insert="INSERT INTO `business`(`Bname`, `Bemail`, `Location`, `Status`) VALUES('".$Bname."','".$Bemail."','".$Location."','".$Status."')";
+$insert="INSERT INTO `stockitem`(`StockName`, `StockPrice`, `Quantity`)
+VALUES('".$StockName."','".$StockPrice."','".$Quantity."')";
 
 
 if(mysqli_query($connect,$insert)){
     echo "success";
-    header("Location: Admin-Manage Business.php");
+    header("Location: Business-Manage Stocks.php");
 }
 else{
     echo"failure";

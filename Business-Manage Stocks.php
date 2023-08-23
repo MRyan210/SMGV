@@ -1,6 +1,7 @@
 <?php 
-session_start();
 	require 'conn.php';
+	session_start()
+
 
 ?>
 
@@ -44,104 +45,33 @@ session_start();
 		</div>
 		<ul class="list-unstyled component m-0">
 		  <li>
-		  <a href="AdminHome.php" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
+		  <a href="BusinessHome.php" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
 		</li>
 		  
 		  <li class="dropdown">
+		  <li class="active">
 		  <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
 		  <i class="material-icons">inventory_2</i>Manage Stocks
 		  </a>
+		  </li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu1">
-			 <li><a href="Admin-Manage Stocks.php">Manage Stocks </a></li>
-			 <li><a href="#">Add Stock Item</a></li>
+			 <li><a href="Business-Manage Stocks.php">Manage Stocks </a></li>
 		  </ul>
 		  </li>
 		  
 		  
-		   <li class="dropdown">
+		  <li class="dropdown">
 		  <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <li class="active">
 		  <i class="material-icons">redeem</i>Vouchering
 		  </a>
-		</li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
-		   <!--  <li><a href="#">Manage Voucher Batch</a></li> -->
-			 <li><a href="#">Manage vouchers</a></li>
-			<!-- <li><a href="#">Generate Voucher code</a></li> -->
-		  </ul>
-		  </li>
-		  
-		   <li class="dropdown">
-		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">business</i>Manage Business
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
-			 <li><a href="Admin-Manage Business.php">Manage Business</a></li>
+			 <li><a href="Business-Manage Vouchers.php">Manage vouchers</a></li>
 		  </ul>
 		  </li>
 		  
 		  
-		   <li class="dropdown">
-		  <a href="#homeSubmenu4" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">people</i>Manage User
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu4">
-			 <li><a href="#">Attach User to Business</a></li>
-			 <li><a href="Admin- Manage Users.php">Manage Users</a></li>
-		  </ul>
-		  </li>
-		  
-		   <!-- <li class="dropdown">
-		  <a href="#homeSubmenu5" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">border_color</i>forms
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu5">
-		     <li><a href="#">Pages 1</a></li>
-			 <li><a href="#">Pages 2</a></li>
-			 <li><a href="#">Pages 3</a></li>
-		  </ul>
-		  </li>
-		  
-		  <li class="dropdown">
-		  <a href="#homeSubmenu6" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">grid_on</i>tables
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu6">
-		     <li><a href="#">table 1</a></li>
-			 <li><a href="#">table 2</a></li>
-			 <li><a href="#">table 3</a></li>
-		  </ul>
-		  </li>
-		  
-		  
-		  <li class="dropdown">
-		  <a href="#homeSubmenu7" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">content_copy</i>Pages
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu7">
-		     <li><a href="#">Pages 1</a></li>
-			 <li><a href="#">Pages 2</a></li>
-			 <li><a href="#">Pages 3</a></li>
-		  </ul>
-		  </li>
-		
-		   
-		  <li class="">
-		  <a href="#" class=""><i class="material-icons">date_range</i>copy </a>
-		  </li>
-		  <li class="">
-		  <a href="#" class=""><i class="material-icons">library_books</i>calender </a>
-		  </li>
-		
-		</ul>
-	-->
 	 </div>
 	 
    <!-------sidebar--design- close----------->
@@ -173,7 +103,7 @@ session_start();
 						    <nav class="navbar p-0">
 							   <ul class="nav navbar-nav flex-row ml-auto">
 							   
-								<a href="index.php" class="nav-link">
+								<a href="index.html" class="nav-link">
 									<span class="material-icons text-white">home</span>
 								</a>
 							 
@@ -210,9 +140,9 @@ session_start();
 				 </div>
 				 
 				 <div class="xp-breadcrumbbar text-center">
-				    <h4 class="page-title">Dashboard</h4>
+				    <h4 class="page-title">Dashboard-Manage Stocks</h4>
 					<ol class="breadcrumb">
-					  <li class="breadcrumb-item active" aria-curent="page"> Admin Dashboard</li>
+					  <li class="breadcrumb-item active" aria-curent="page"> Business Dashboard</li>
 					</ol>
 				 </div>
 				 
@@ -232,12 +162,12 @@ session_start();
 					   <div class="table-title">
 					     <div class="row">
 						     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-							    <h2 class="ml-lg-2">Manage Voucher</h2>
+							    <h2 class="ml-lg-2">Manage Stock</h2>
 							 </div>
 							 <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
 							   <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
 							   <i class="material-icons">&#xE147;</i>
-							   <span>Add Voucher reciepient</span>
+							   <span>Add Stock Item</span>
 							   </a>
 							   <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
 							   <i class="material-icons">&#xE15C;</i>
@@ -250,47 +180,33 @@ session_start();
 					   <table class="table table-striped table-hover">
 					      <thead>
 						     <tr>
-							
-							 <th>DateCreated</th>
-							
-							 <th>Voucher Code</th>
-							 <th>Email</th>
-							 <th>Price Off</th>
-							 <th>Status</th>
+							 
+							 <th>Item Name</th>
+							 <th>Price</th>
+							 <th>Quantity</th>
 							 </tr>
 						  </thead>
 						  
 						 <!--to Put Menu Dashboards here-->
-						 <tbody>
-						 <?php 
-                                    $query = "SELECT * FROM vouchercode WHERE Status = 'Active' ";
+						  <tbody>
+						  <?php 
+                                    $query = "SELECT * FROM stockitem WHERE Quantity >= 0";
                                     $query_run = mysqli_query($conn, $query);
 
                                     if(mysqli_num_rows($query_run) > 0)
                                     {
-                                        foreach($query_run as $Voucher)
+                                        foreach($query_run as $User)
                                         {
                                             ?>
                                             <tr>
-                                                <td><?= $Voucher['DateCreated']; ?></td>
-                                                <td><?= $Voucher['VoucherCode']; ?></td>
-												<td><?= $Voucher['Email']; ?></td>
-												<td><?= $Voucher['Discount']; ?>%</td>
-												<td><?= $Voucher['Status']; ?></td>
-												
-												
-												
-                                                
-												
+											    <td><?= $User['StockName']; ?></td>
+                                                <td><?= $User['StockPrice']; ?></td>
+                                                <td><?= $User['Quantity']; ?></td>
                                                 <td>
-                                                  <!--  <a href="student-view.php?UserID=" class="btn btn-info btn-sm">View</a> -->
-
-                                                   <!-- <a href="UserEdit.php?UserID=<?= $Voucher['VoucherID']; ?>" class="btn btn-success btn-sm">Edit</a> -->
+                                                    <a href="BStockEdit.php?StockID=<?= $User['StockID']; ?>" class="btn btn-success btn-sm">Edit</a>
 
 													<!-- Delete section -->
-													<a href="Voucherdelete.php?VoucherID=<?= $Voucher['VoucherID']; ?>" class="btn btn-danger">Delete</a>
-                                                      <!--  <button type="submit" name="delete_User" value="<?= $User['UserID'];?>" class="btn btn-danger btn-sm">Delete</button> -->
-                                                    
+													<a href="BStockDelete.php?StockID=<?= $User['StockID']; ?>" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             <?php
@@ -301,14 +217,12 @@ session_start();
                                         echo "<h5> No Record Found </h5>";
                                     }
                                 ?>
-
-						  
-						     
 						  </tbody>
 						  
 					      
 					   </table>
 					   
+					   <!--
 					   <div class="clearfix">
 					     <div class="hint-text">showing <b>5</b> out of <b>25</b></div>
 					     <ul class="pagination">
@@ -321,14 +235,7 @@ session_start();
 							<li class="page-item "><a href="#" class="page-link">Next</a></li>
 						 </ul>
 					   </div>
-					   
-					   
-					   
-					   
-	
-					   
-					   
-					   
+								-->
 					   
 					   </div>
 					</div>
@@ -341,36 +248,33 @@ session_start();
 <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
 
-	<form action="VoucherSend.php" method="POST">
+	<form action="BInsertStock.php" method="POST">
 	<div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add Voucher reciepient</h5>
+        <h5 class="modal-title">Add User</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
       <div class="modal-body">
-	 <div class="form-group">
-			<label>Voucher Code</label>
-			<input type="text" class="form-control" name="VoucherCode" id="VoucherCode" readonly="readonly" required="required" />
-			<br />
-			<button id="generate" class="btn btn-success" name="generate" type="button"><span class="glyphicon glyphicon-random"></span> Generate</button> 
-			</div>
-
         <div class="form-group">
-		    <label>Customer Email</label>
-			<input type="text" name = "Email" class="form-control" required="true">
+		    <label>Item Name</label>
+			<input type="text" name = "StockName" class="form-control" required="true">
 		</div>
-			<div class="form-group">
-				<label>Discount</label>
-				<input type="number" class="form-control" name="Discount" min="10" required="required"/>
-			</div>
+		<div class="form-group">
+		    <label>Price</label>
+			<input type="text" name="StockPrice" class="form-control" required>
+		</div>
+
+		<div class="form-group">
+		    <label>Quantity</label>
+			<input type="text" name="Quantity" class="form-control" required="true">
+		</div>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button name="save" class="btn btn-success">Add</button>
+        <button type="submit" class="btn btn-success">Add</button>
       </div>
     </div>
 </form>
@@ -385,28 +289,38 @@ session_start();
 					   
 				   <!----edit-modal start--------->
 		<div class="modal fade" tabindex="-1" id="editEmployeeModal" role="dialog">
-			<form action="Voucheredit.php" method="POST">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit Voucher</h5>
+        <h5 class="modal-title">Edit Employees</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-		    <label>Status</label>
+		    <label>Name</label>
 			<input type="text" class="form-control" required>
 		</div>
-		
+		<div class="form-group">
+		    <label>Email</label>
+			<input type="emil" class="form-control" required>
+		</div>
+		<div class="form-group">
+		    <label>Address</label>
+			<textarea class="form-control" required></textarea>
+		</div>
+		<div class="form-group">
+		    <label>Phone</label>
+			<input type="text" class="form-control" required>
+		</div>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-success">Save</button>
+        <button type="button" class="btn btn-success">Save</button>
       </div>
     </div>
   </div>
-</form>
 </div>
 
 					   <!----edit-modal end--------->	   
@@ -415,10 +329,9 @@ session_start();
 					 <!----delete-modal start--------->
 		<div class="modal fade" tabindex="-1" id="deleteEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
-	<form action="Voucherdelete.php" method="post">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Delete Voucher</h5>
+        <h5 class="modal-title">Delete Employees</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -432,7 +345,6 @@ session_start();
         <button type="submit" class="btn btn-success">Delete</button>
       </div>
     </div>
-</form>
   </div>
 </div>
 
@@ -476,21 +388,12 @@ session_start();
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
    <script src="js/jquery-3.3.1.slim.min.js"></script>
    <script src="js/popper.min.js"></script>
-   <script src="Generate Coupon Code/js/bootstrap.js"></script>
    <script src="js/bootstrap.min.js"></script>
    <script src="js/jquery-3.3.1.min.js"></script>
-   
   
   
-   <script type="text/javascript">
+  <script type="text/javascript">
        $(document).ready(function(){
-
-		$('#generate').on('click', function(){
-			$.get("GenerateVouchercode.php", function(data){
-				$('#VoucherCode').val(data);
-			});
-		});
-
 	      $(".xp-menubar").on('click',function(){
 		    $("#sidebar").toggleClass('active');
 			$("#content").toggleClass('active');
