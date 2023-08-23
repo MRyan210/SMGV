@@ -26,7 +26,7 @@ require 'conn.php';
                 <div class="card">
                     <div class="card-header">
                         <h4>Student Edit 
-                            <a href="Admin- Manage Userscopy.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="Business- Manage Stocks.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">

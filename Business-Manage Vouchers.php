@@ -174,7 +174,7 @@ session_start();
 							   <span>Delete</span>
 							   </a> -->
 
-							   <a href="#VoucherRedeem" class="btn btn-success" data-toggle="modal">
+							   <a href="BRedeemVoucher.php" class="btn btn-success" >
 							   <i class="material-icons">&#xE147;</i>
 							   <span>Redeem Voucher</span>
 							   </a>
@@ -317,7 +317,7 @@ session_start();
 
 
 
-									<!--Voucher redemption modal Start -->
+									<!--Voucher redemption modal Start 
 									<div class="modal fade" tabindex="-1" id="VoucherRedeem" role="dialog">
   <div class="modal-dialog" role="document">
 
@@ -331,16 +331,35 @@ session_start();
       </div>
 
       <div class="modal-body">
+			
+	  <div class="form-group">
+		    <label>Product</label>
+			<select id ="Product"  input type="submit" name="Product" class="form-control" required="true">
+				<option value="Select" selected>Select Product</option>
+				<?php
+
+
+
+
+?>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+				<option value="Other">Other</option>
+				</select>
+		</div>
+
+
+
+		<div class="modal-body">
 	 <div class="form-group">
-			<label>Voucher Code</label>
-			<input type="text" class="form-control" name="VoucherCode" id="VoucherCode" readonly="readonly" required="required" />
+			<label>Price</label>
+			<input type="text" class="form-control" name="Price" id="Price" readonly="readonly" required="required" />
 			<br />
-			<button id="generate" class="btn btn-success" name="generate" type="button"><span class="glyphicon glyphicon-random"></span> Generate</button> 
 			</div>
 
         <div class="form-group">
-		    <label>Customer Email</label>
-			<input type="text" name = "Email" class="form-control" required="true">
+		    <label>Voucher Code</label>
+			<input type="text" name = "VoucherCode" class="form-control" required="true">
 		</div>
 			<div class="form-group">
 				<label>Discount</label>
@@ -357,7 +376,7 @@ session_start();
   </div>
 </div>
 
-
+-->
 
 
 <!-- Voucher redemption end -->

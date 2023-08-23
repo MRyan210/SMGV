@@ -15,13 +15,13 @@ if(isset($_POST['delete_Business']))
     if($query_run)
     {
         $_SESSION['message'] = "Business Deleted Successfully";
-        header("Location: Admin-Manage Business.php");
+        header("Location: Business-Manage Business.php");
         exit(0);
     }
     else
     {
         $_SESSION['message'] = "Business Not Deleted";
-        header("Location: Admin-Manage Business.php");
+        header("Location: Business-Manage Business.php");
         exit(0);
     }
 }

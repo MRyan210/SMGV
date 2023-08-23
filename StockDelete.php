@@ -25,7 +25,7 @@ require 'conn.php';
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Student Edit 
+                        <h4>Delete Stock
                             <a href="Admin- Manage Userscopy.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>

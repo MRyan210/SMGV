@@ -1,6 +1,7 @@
 <?php 
-session_start();
 	require 'conn.php';
+	session_start()
+
 
 ?>
 
@@ -11,7 +12,7 @@ session_start();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-        <title>Admin dashboard</title>
+        <title>Business dashboard</title>
 	    <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 	    <!----css3---->
@@ -28,7 +29,7 @@ session_start();
       <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
 
   </head>
-  <body onload="table();">
+  <body>
   
 
 
@@ -44,104 +45,36 @@ session_start();
 		</div>
 		<ul class="list-unstyled component m-0">
 		  <li>
-		  <a href="AdminHome.php" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
-		  
+		  <a href="BusinessHome.php" class="dashboard"><i class="material-icons">dashboard</i>dashboard </a>
 		</li>
-		<li class="dropdown">
+		  
+		  <li class="dropdown">
+		  
 		  <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
 		  <i class="material-icons">inventory_2</i>Manage Stocks
 		  </a>
+		  </li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu1">
-			 <li><a href="Admin-Manage Stocks.php">Manage Stocks </a></li>
-			 <li><a href="#">Add Stock Item</a></li>
+			 <li><a href="Business-Manage Stocks.php">Manage Stocks </a></li>
 		  </ul>
 		  </li>
 		  
 		  
 		  <li class="dropdown">
+          <li class="active">
 		  <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
 		  <i class="material-icons">redeem</i>Vouchering
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
-		   <!--  <li><a href="#">Manage Voucher Batch</a></li> -->
-			 <li><a href="Admin-Manage Vouchers.php">Manage vouchers</a></li>
-			<!-- <li><a href="#">Generate Voucher code</a></li> -->
-		  </ul>
-		  </li>
-		  
-		   <li class="dropdown">
-		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">business</i>Manage Business
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
-			 <li><a href="Admin-Manage Business.php">Manage Business</a></li>
+			 <li><a href="Business-Manage Vouchers.php">Manage vouchers</a></li>
+             <li><a href="Business-Manage Vouchers.php">Redeem vouchers</a></li>
+</li>
 		  </ul>
 		  </li>
 		  
 		  
-		   <li class="dropdown">
-		  <a href="#homeSubmenu4" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <li class="active">
-		  <i class="material-icons">people</i>Manage User
-		  </a>
-		</li>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu4">
-			 <li><a href="#">Attach User to Business</a></li>
-			 <li><a href="Admin- Manage Users.php">Manage Users</a></li>
-		  </ul>
-		  </li>
-		  
-		   <!-- <li class="dropdown">
-		  <a href="#homeSubmenu5" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">border_color</i>forms
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu5">
-		     <li><a href="#">Pages 1</a></li>
-			 <li><a href="#">Pages 2</a></li>
-			 <li><a href="#">Pages 3</a></li>
-		  </ul>
-		  </li>
-		  
-		  <li class="dropdown">
-		  <a href="#homeSubmenu6" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">grid_on</i>tables
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu6">
-		     <li><a href="#">table 1</a></li>
-			 <li><a href="#">table 2</a></li>
-			 <li><a href="#">table 3</a></li>
-		  </ul>
-		  </li>
-		  
-		  
-		  <li class="dropdown">
-		  <a href="#homeSubmenu7" data-toggle="collapse" aria-expanded="false" 
-		  class="dropdown-toggle">
-		  <i class="material-icons">content_copy</i>Pages
-		  </a>
-		  <ul class="collapse list-unstyled menu" id="homeSubmenu7">
-		     <li><a href="#">Pages 1</a></li>
-			 <li><a href="#">Pages 2</a></li>
-			 <li><a href="#">Pages 3</a></li>
-		  </ul>
-		  </li>
-		
-		   
-		  <li class="">
-		  <a href="#" class=""><i class="material-icons">date_range</i>copy </a>
-		  </li>
-		  <li class="">
-		  <a href="#" class=""><i class="material-icons">library_books</i>calender </a>
-		  </li>
-		
-		</ul>
-	-->
 	 </div>
 	 
    <!-------sidebar--design- close----------->
@@ -210,9 +143,9 @@ session_start();
 				 </div>
 				 
 				 <div class="xp-breadcrumbbar text-center">
-				    <h4 class="page-title">Dashboard</h4>
+				    <h4 class="page-title">Dashboard-Redeem Voucher</h4>
 					<ol class="breadcrumb">
-					  <li class="breadcrumb-item active" aria-curent="page"> Admin Dashboard</li>
+					  <li class="breadcrumb-item active" aria-curent="page"> Business Dashboard</li>
 					</ol>
 				 </div>
 				 
@@ -232,46 +165,35 @@ session_start();
 					   <div class="table-title">
 					     <div class="row">
 						     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-							    <h2 class="ml-lg-2">Manage  Users</h2>
+							    <h2 class="ml-lg-2">Redeem Voucher</h2>
 							 </div>
-							 <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
+							 <!-- <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
 							   <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
 							   <i class="material-icons">&#xE147;</i>
-							   <span>Add New User</span>
+							   <span>Add Stock Item</span>
 							   </a>
 							   <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
 							   <i class="material-icons">&#xE15C;</i>
 							   <span>Delete</span>
 							   </a>
-							 </div>
+							 </div>-->
 					     </div>
-					   </div>
+					   </div> 
 					   
 					   <table class="table table-striped table-hover">
 					      <thead>
 						     <tr>
-							<!-- <th><span class="custom-checkbox">
-							 <input type="checkbox" id="selectAll"> 
-							 <label for="selectAll"></label></th>-->
-							<b> <th>Date Created</th> </b>
-							 <th>First Name</th>
-							 <th>Last Name</th>
-							 <th>National ID</th>
-							 <th>Gender</th>
-							 <th>DateofBirth</th>
-							 <th>PhoneNumber</th>
-							 <th>Email</th> </b>
+							 
+							 <th>Item Name</th>
+							 <th>Price</th>
+							 <th>Quantity</th>
 							 </tr>
 						  </thead>
 						  
-						 <!--to Put Menu Dashboards here -->
-
-
-
-
+						 <!--to Put Menu Dashboards here-->
 						  <tbody>
 						  <?php 
-                                    $query = "SELECT * FROM user WHERE Status = 1";
+                                    $query = "SELECT * FROM stockitem WHERE Quantity >= 0";
                                     $query_run = mysqli_query($conn, $query);
 
                                     if(mysqli_num_rows($query_run) > 0)
@@ -280,25 +202,14 @@ session_start();
                                         {
                                             ?>
                                             <tr>
-                                                <td><?= $User['DateCreated']; ?></td>
-                                                <td><?= $User['FirstName']; ?></td>
-												<td><?= $User['LastName']; ?></td>
-												<td><?= $User['NationalID']; ?></td>
-												<td><?= $User['Gender']; ?></td>
-												<td><?= $User['DateofBirth']; ?></td>
-                                                <td><?= $User['Email']; ?></td>
-                                                <td><?= $User['Phonenumber']; ?></td>
-                                                
-												
+											    <td><?= $User['StockName']; ?></td>
+                                                <td><?= $User['StockPrice']; ?></td>
+                                                <td><?= $User['Quantity']; ?></td>
                                                 <td>
-                                                  <!--  <a href="student-view.php?UserID=" class="btn btn-info btn-sm">View</a> -->
-
-                                                    <a href="UserEdit.php?UserID=<?= $User['UserID']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                                    <a href="BVoucher.php?StockID=<?= $User['StockID']; ?>" class="btn btn-success btn-sm">Select</a>
 
 													<!-- Delete section -->
-													<a href="UserDelete.php?UserID=<?= $User['UserID']; ?>" class="btn btn-danger">Delete</a>
-                                                      <!--  <button type="submit" name="delete_User" value="<?= $User['UserID'];?>" class="btn btn-danger btn-sm">Delete</button> -->
-                                                    
+													
                                                 </td>
                                             </tr>
                                             <?php
@@ -329,14 +240,6 @@ session_start();
 					   </div>
 								-->
 					   
-					   
-					   
-					   
-	
-					   
-					   
-					   
-					   
 					   </div>
 					</div>
 					
@@ -348,7 +251,7 @@ session_start();
 <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
 
-	<form action="InserttAdmin.php" method="POST">
+	<form action="BInsertStock.php" method="POST">
 	<div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Add User</h5>
@@ -358,45 +261,19 @@ session_start();
       </div>
       <div class="modal-body">
         <div class="form-group">
-		    <label>First Name</label>
-			<input type="text" name = "FirstName" class="form-control" required="true">
+		    <label>Item Name</label>
+			<input type="text" name = "StockName" class="form-control" required="true">
 		</div>
 		<div class="form-group">
-		    <label>Last Name</label>
-			<input type="text" name="LastName" class="form-control" required="true">
+		    <label>Price</label>
+			<input type="text" name="StockPrice" class="form-control" required>
 		</div>
 
 		<div class="form-group">
-		    <label>National ID</label>
-			<input type="text" name="NationalID" class="form-control" required="true">
+		    <label>Quantity</label>
+			<input type="text" name="Quantity" class="form-control" required="true">
 		</div>
 
-		<div class="form-group">
-		    <label>Gender</label>
-			<select id ="Gender"  input type="submit" name="Gender" class="form-control" required="true">
-				<option value="Select" selected>Select Gender</option>
-				<option value="Male">Male</option>
-				<option value="Female">Female</option>
-				<option value="Other">Other</option>
-				</select>
-		</div>
-
-		<div class="form-group">
-		    <label>Date of Birth</label>
-			<input type="date" name="DateofBirth" class="form-control" required="true">
-		</div>
-		
-		<div class="form-group">
-		    <label>PhoneNumber</label>
-			<input type="text" name="PhoneNumber" class="form-control" required="true">
-		</div>
-
-		<div class="form-group">
-		    <label>Email</label>
-			<input type="emil" name="Email" class="form-control" required>
-		</div>
-		
-		
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -468,7 +345,7 @@ session_start();
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success">Delete</button>
+        <button type="submit" class="btn btn-success">Delete</button>
       </div>
     </div>
   </div>
@@ -520,21 +397,6 @@ session_start();
   
   <script type="text/javascript">
        $(document).ready(function(){
-		$('.edit').click(function(){
-			var PhoneNumber = $(this).data('id');
-			$('#editEmployeeModal').load('')
-			$('#editModal').load('editEmployeeModal.php?Phonenumber=' + phoneNumber);
-        });
-
-        // Handle the click event on delete links
-        $('.delete').click(function () {
-            var phoneNumber = $(this).data('id');
-            // Load the delete modal content dynamically using AJAX
-            $('#deleteEmployeeModal').load('deleteEmployeeModal.php?Phonenumber=' + phoneNumber);
-     
-   
-
-		})
 	      $(".xp-menubar").on('click',function(){
 		    $("#sidebar").toggleClass('active');
 			$("#content").toggleClass('active');

@@ -2419,11 +2419,63 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
-.btn-primary {
+
+
+
+.btn-redeem {
+  color: #fff;
+  background-color: #ff9900;
+  border-color: #00ff88;
+  padding: 10px 20px;
+}
+
+.btn-redeem:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-redeem:focus, .btn-redeem.focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.btn-redeem.disabled, .btn-redeem:disabled {
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
 }
+
+.btn-redeem:not(:disabled):not(.disabled):active, .btn-redeem:not(:disabled):not(.disabled).active,
+.show > .btn-redeem.dropdown-toggle {
+  color: #fff;
+  background-color: #0062cc;
+  border-color: #005cbf;
+}
+
+.btn-redeem:not(:disabled):not(.disabled):active:focus, .btn-redeem:not(:disabled):not(.disabled).active:focus,
+.show > .btn-redeem.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 10px 20px;
+}
+
+
 
 .btn-primary:hover {
   color: #fff;

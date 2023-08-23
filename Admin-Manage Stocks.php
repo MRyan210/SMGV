@@ -273,10 +273,10 @@
                                                 <td><?= $User['StockPrice']; ?></td>
                                                 <td><?= $User['Quantity']; ?></td>
                                                 <td>
-                                                    <a href="StockEdit.php?StockID=<?= $User['StockID']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                                    <a href="BStockEdit.php?StockID=<?= $User['StockID']; ?>" class="btn btn-success btn-sm">Edit</a>
 
 													<!-- Delete section -->
-													<a href="StockDelete.php?StockID=<?= $User['StockID']; ?>" class="btn btn-danger">Delete</a>
+													<a href="BStockDelete.php?StockID=<?= $User['StockID']; ?>" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
                                             <?php
