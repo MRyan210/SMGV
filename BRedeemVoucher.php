@@ -69,7 +69,7 @@
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
 			 <li><a href="Business-Manage Vouchers.php">Manage vouchers</a></li>
-             <li><a href="Business-Manage Vouchers.php">Redeem vouchers</a></li>
+             <li><a href="BRedeemVoucher.php">Redeem vouchers</a></li>
 </li>
 		  </ul>
 		  </li>

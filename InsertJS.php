@@ -19,7 +19,7 @@ $Password=$_POST["Password"];
 $Password = sha1($Password);
 
 $insert="INSERT INTO `user`(`FirstName`, `LastName`, `NationalID`, `Gender`, `DateofBirth`, `Phonenumber`, `Email`, `Password`, `Role`, `Status`)
-VALUES('".$FirstName."','".$LastName."','".$NationalID."','".$Gender."','".$DateOfBirth."','".$PhoneNumber."','".$Email."','".$Password."','1','1')";
+VALUES('".$FirstName."','".$LastName."','".$NationalID."','".$Gender."','".$DateOfBirth."','".$PhoneNumber."','".$Email."','".$Password."','2','1')";
 
 
 if(mysqli_query($connect,$insert)){

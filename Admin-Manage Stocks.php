@@ -260,7 +260,7 @@
 						 <!--to Put Menu Dashboards here-->
 						  <tbody>
 						  <?php 
-                                    $query = "SELECT * FROM stockitem WHERE Quantity >= 0";
+                                    $query = "SELECT * FROM stockitem WHERE Quantity >= 0"; //AND DateCreated > '2023-08-23 19:00:50'";
                                     $query_run = mysqli_query($conn, $query);
 
                                     if(mysqli_num_rows($query_run) > 0)

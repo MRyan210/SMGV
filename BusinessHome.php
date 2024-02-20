@@ -89,7 +89,7 @@
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
 			 <li><a href="Business-Manage Vouchers.php">Manage vouchers</a></li>
-			 <li><a href="Business-Manage Vouchers.php">Redeem vouchers</a></li>
+			 <li><a href="BRedeemVoucher.php">Redeem vouchers</a></li>
 
 		  </ul>
 		  </li>
@@ -269,7 +269,7 @@
               <p>
                 Manage Vouchers for your businesses.
               </p>
-              <a href="Business-Manage Vouchers.html">
+              <a href="Business-Manage Vouchers.php">
                 Select
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 

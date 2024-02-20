@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-        <title>Admin dashboard</title>
+        <title>Business dashboard</title>
 	    <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 	    <!----css3---->
@@ -68,6 +68,7 @@
 		  </a>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
 			 <li><a href="Business-Manage Vouchers.php">Manage vouchers</a></li>
+			 <li><a href="BRedeemVoucher.php">Redeem vouchers</a></li>
 		  </ul>
 		  </li>
 		  
