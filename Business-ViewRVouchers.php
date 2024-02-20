@@ -67,7 +67,8 @@ session_start();
 		  </a>
 		</li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
-			 <li><a href="Business-Manage Vouchers.php">Manage vouchers</a></li>
+			 <li><a href="Business-Manage Vouchers.php">Manage Active vouchers</a></li>
+			 <li><a href="Business-ViewRVouchers.php">View Redeemed Vouchers</a></li>
 			 <li><a href="BRedeemVoucher.php">Redeem vouchers</a></li>
 		  </ul>
 		  </li>
@@ -163,8 +164,9 @@ session_start();
 					   <div class="table-title">
 					     <div class="row">
 						     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-							    <h2 class="ml-lg-2">Manage Voucher</h2>
+							    <h2 class="ml-lg-2">View Redeemed Voucher</h2>
 							 </div>
+							 <!--
 							 <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
 							   <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
 							   <i class="material-icons">&#xE147;</i>
@@ -174,11 +176,11 @@ session_start();
 							   <i class="material-icons">&#xE15C;</i>
 							   <span>Delete</span>
 							   </a> -->
-
+	<!--
 							   <a href="BRedeemVoucher.php" class="btn btn-success" >
 							   <i class="material-icons">&#xE147;</i>
 							   <span>Redeem Voucher</span>
-							   </a>
+							   </a> -->
 
 							   
 							 </div>
@@ -201,7 +203,7 @@ session_start();
 						 <!--to Put Menu Dashboards here-->
 						 <tbody>
 						 <?php 
-                                    $query = "SELECT * FROM vouchercode WHERE Status = 'Active' AND DateCreated > '2023-08-23 19:00:50' ";
+                                    $query = "SELECT * FROM vouchercode WHERE Status = 'Redeemed' AND DateCreated > '2023-08-23 19:00:50' ";
                                     $query_run = mysqli_query($conn, $query);
 
                                     if(mysqli_num_rows($query_run) > 0)

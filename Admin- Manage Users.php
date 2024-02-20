@@ -393,9 +393,30 @@ session_start();
 
 		<div class="form-group">
 		    <label>Email</label>
-			<input type="emil" name="Email" class="form-control" required>
+			<input type="email" name="Email" class="form-control" required>
 		</div>
-		
+			
+		<div class="form-group">
+			<?php
+				$result = "SELECT BName, BusinessID From business";
+                $query_run = mysqli_query($conn,$result);
+			?>
+		    <label>Add Business</label>
+
+			<Select type= "text" name="Business" class="form-control" required>
+				<?php
+                while($rows =$query_run->fetch_assoc()) {
+					$Bname = $rows['BName'];
+					$BID = $rows['BusinessID'];
+					echo "<Option Value ='".$BusinessID."'>.$Bname</Option>";
+				}
+				?>
+			</Select>
+		</div>
+
+
+
+
 		
       </div>
       <div class="modal-footer">
@@ -404,6 +425,8 @@ session_start();
       </div>
     </div>
 </form>
+
+
   </div>
 </div>
 
