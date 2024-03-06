@@ -39,19 +39,20 @@ if(isset($_POST['update_User']))
     $Phonenumber = mysqli_real_escape_string($conn, $_POST['Phonenumber']);
     $DateofBirth = mysqli_real_escape_string($conn, $_POST['DateofBirth']);
     $NationalID = mysqli_real_escape_string($conn, $_POST['NationalID']);
+    $BusinessID = mysqli_real_escape_string($conn, $_POST['Business']);
 
-    $query = "UPDATE user SET FirstName='$FirstName',LastName='$LastName',Email = '$Email' ,Phonenumber='$Phonenumber',DateofBirth='$DateofBirth' WHERE NationalID='$NationalID' ";
+    $query = "UPDATE user SET FirstName='$FirstName',LastName='$LastName',Email = '$Email' ,Phonenumber='$Phonenumber',DateofBirth='$DateofBirth', BusinessID ='$BusinessID'  WHERE NationalID='$NationalID' ";
     $query_run = mysqli_query($conn, $query);
 
     if($query_run)
     {
-        $_SESSION['message'] = "Student Updated Successfully";
+        $_SESSION['message'] = "User Updated Successfully";
         header("Location: Admin- Manage Users.php");
         exit(0);
     }
     else
     {
-        $_SESSION['message'] = "Student Not Updated";
+        $_SESSION['message'] = "User Not Updated";
         header("Location: Admin- Manage Users.php");
         exit(0);
     }

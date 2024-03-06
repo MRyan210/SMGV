@@ -69,6 +69,23 @@ require 'conn.php';
                                         <label>Date of Birth</label>
                                         <input type="date" name="DateofBirth" value="<?=$User['DateofBirth'];?>" class="form-control">
                                     </div>
+                                    <div class="form-group">
+			<?php
+				$result = "SELECT BName, BusinessID From business";
+                $query_run = mysqli_query($conn,$result);
+			?>
+		    <label>Add Business</label>
+
+			<Select type= "text" name="Business" class="form-control" required>
+				<?php
+                while($rows =$query_run->fetch_assoc()) {
+					$Bname = $rows['BName'];
+					$BID = $rows['BusinessID'];
+					echo "<Option Value ='".$BID."'>.$Bname</Option>";
+				}
+				?>
+			</Select>
+		</div>
                                     <div class="mb-3">
                                         <button type="submit" name="update_User" class="btn btn-primary">
                                             Update

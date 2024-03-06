@@ -404,11 +404,14 @@ session_start();
 		    <label>Add Business</label>
 
 			<Select type= "text" name="Business" class="form-control" required>
+				
 				<?php
+				echo "<Option disabled selected> Select Business </Option>";
                 while($rows =$query_run->fetch_assoc()) {
 					$Bname = $rows['BName'];
 					$BID = $rows['BusinessID'];
-					echo "<Option Value ='".$BusinessID."'>.$Bname</Option>";
+					
+					echo "<Option Value ='".$BID."'>.$Bname</Option>";
 				}
 				?>
 			</Select>
