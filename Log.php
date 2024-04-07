@@ -1,12 +1,6 @@
 <?php
 session_start();
-
-$dbserver = "localhost";
-$dbusername = "root";
-$password="";
-$dbname="stockmgmt1";
- 
-$connect=mysqli_connect($dbserver,$dbusername,$password,$dbname);
+require 'conn.php';
 
 $Email = $_POST["Email"];
 $Password = $_POST["Password"];

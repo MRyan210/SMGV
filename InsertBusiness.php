@@ -1,10 +1,5 @@
 <?php
-$dbserver="localhost";
-$dbusername="root";
-$password="";
-$dbname="stockmgmt1";
-
-$connect=mysqli_connect($dbserver,$dbusername,$password,$dbname);
+require 'conn.php';
 
 
 $Bname = $_POST["Bname"];
