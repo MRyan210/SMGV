@@ -1,11 +1,15 @@
 <?php
-require 'conn.php';
+$dbserver="localhost";
+$dbusername="root";
+$password="";
+$dbname="stockmgmt1";
 
+$connect=mysqli_connect($dbserver,$dbusername,$password,$dbname);
 
 $FirstName = $_POST["FirstName"];
 $LastName = $_POST["LastName"];
 $Email = $_POST["Email"];
-$DateofBirth = $_POST["DateofBirth"];
+$DateofBirth =date('y-m-d', strtotime($_POST["DateofBirth"]));
 $NationalID =$_POST["NationalID"];
 $Gender=$_POST["Gender"];
 $PhoneNumber = $_POST["PhoneNumber"];

@@ -1,7 +1,6 @@
 <?php 
+session_start();
 	require 'conn.php';
-	session_start()
-
 
 ?>
 
@@ -49,32 +48,34 @@
 		</li>
 		  
 		  <li class="dropdown">
-		  <li class="active">
 		  <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
 		  <i class="material-icons">inventory_2</i>Manage Stocks
 		  </a>
-		  </li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu1">
 			 <li><a href="Business-Manage Stocks.php">Manage Stocks </a></li>
+			 <li><a href="Business-Manage Stocks.php">Add Stock Item</a></li>
 		  </ul>
 		  </li>
 		  
 		  
-		  <li class="dropdown">
+		   <li class="dropdown">
 		  <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
 		  <i class="material-icons">redeem</i>Vouchering
 		  </a>
+		</li>
 		  <ul class="collapse list-unstyled menu" id="homeSubmenu2">
-			 <li><a href="Business-Manage Vouchers.php">Manage vouchers</a></li>
+			 <li><a href="Business-Manage Vouchers.php">Manage Active vouchers</a></li>
+			 <li><a href="Business-ViewRVouchers.php">View Redeemed Vouchers</a></li>
 			 <li><a href="BRedeemVoucher.php">Redeem vouchers</a></li>
 		  </ul>
 		  </li>
-		  
+
 		  <li class="dropdown">
 		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
+		  <li class="active">
 		  <i class="material-icons">summarize</i>Reporting
 		  </a>
 		</li>
@@ -84,6 +85,7 @@
 		  </ul>
 		  </li>
 		  
+		   
 	 </div>
 	 
    <!-------sidebar--design- close----------->
@@ -115,7 +117,7 @@
 						    <nav class="navbar p-0">
 							   <ul class="nav navbar-nav flex-row ml-auto">
 							   
-								<a href="index.html" class="nav-link">
+								<a href="index.php" class="nav-link">
 									<span class="material-icons text-white">home</span>
 								</a>
 							 
@@ -152,7 +154,7 @@
 				 </div>
 				 
 				 <div class="xp-breadcrumbbar text-center">
-				    <h4 class="page-title">Dashboard-Manage Stocks</h4>
+				    <h4 class="page-title">Dashboard-Manage Vouchers</h4>
 					<ol class="breadcrumb">
 					  <li class="breadcrumb-item active" aria-curent="page"> Business Dashboard</li>
 					</ol>
@@ -174,13 +176,25 @@
 					   <div class="table-title">
 					     <div class="row">
 						     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-							    <h2 class="ml-lg-2">Manage Stock</h2>
+							    <h2 class="ml-lg-2">View Past Orders</h2>
 							 </div>
+							 <!--
 							 <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
 							   <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
 							   <i class="material-icons">&#xE147;</i>
-							   <span>Add Stock Item</span>
+							   <span>Add Voucher reciepient</span>
 							   </a>
+							   <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
+							   <i class="material-icons">&#xE15C;</i>
+							   <span>Delete</span>
+							   </a> -->
+	<!--
+							   <a href="BRedeemVoucher.php" class="btn btn-success" >
+							   <i class="material-icons">&#xE147;</i>
+							   <span>Redeem Voucher</span>
+							   </a> -->
+
+							   
 							 </div>
 					     </div>
 					   </div>
@@ -188,63 +202,108 @@
 					   <table class="table table-striped table-hover">
 					      <thead>
 						     <tr>
+							
+							 <th style="font-weight: bold;">Date Created</th>
+							 <th style="font-weight: bold;">Voucher Code</th>
+							 <th style="font-weight: bold;">Customer's Email</th>
+							 <th style="font-weight: bold;">Products Taken</th>
+							 <th style="font-weight: bold;">Amount</th>
 
-							 
-							 <th>Item Name</th>
-							 <th>Price</th>
-							 <th>Quantity</th>
 							 </tr>
 						  </thead>
 						  
 						 <!--to Put Menu Dashboards here-->
-						  <tbody>
-						  <?php 
-                                    $query = "SELECT * FROM stockitem WHERE Quantity >= 0 AND DateCreated > '2023-08-23 19:00:50'";
-                                    $query_run = mysqli_query($conn, $query);
+						 <tbody>
+						 <?php 
+                                  // Pagination code starts here
+                            // Number of records per page
+                            $records_per_page = 15;
 
-                                    if(mysqli_num_rows($query_run) > 0)
-                                    {
-                                        foreach($query_run as $User)
-                                        {
+                            // Get the current page number from the URL parameter
+                            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                            $start_from = ($current_page - 1) * $records_per_page;
+
+                            // SQL query with LIMIT clause
+                            $query = "SELECT * FROM orders ORDER BY DateCreated DESC";
+                            $query_run = mysqli_query($conn, $query);
+
+                            // Fetch and display records
+                            if (mysqli_num_rows($query_run) > 0) {
+                                foreach ($query_run as $Voucher) {
                                             ?>
-                                            <tr>
-											    <td><?= $User['StockName']; ?></td>
-                                                <td>Ksh <?=  number_format($User['StockPrice']); ?></td>
-                                                <td><?= $User['Quantity']; ?></td>
-                                                <td>
-                                                    <a href="BStockEdit.php?StockID=<?= $User['StockID']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                            <tr style= "font-size:smaller">
+                                                <td><?= $Voucher['DateCreated']; ?></td>
+                                                <td><?= $Voucher['VoucherCode']; ?></td>
+												<td><?= $Voucher['Email']; ?></td>
+												<td ><?= $Voucher['total_products']; ?></td> 
+												<td style= "font-size:medium">Ksh <?= number_format($Voucher['total_price']); ?></td>
+                                                <!-- <td>
+                                                  <a href="student-view.php?UserID=" class="btn btn-info btn-sm">View</a> 
 
-													<!-- Delete section -->
-													<a href="BStockDelete.php?StockID=<?= $User['StockID']; ?>" class="btn btn-danger">Delete</a>
-                                                </td>
+                                                   <a href="UserEdit.php?UserID=<?= $Voucher['VoucherID']; ?>" class="btn btn-success btn-sm">Edit</a> 
+
+													 Delete section 
+													 <a href="BVoucherdelete.php?VoucherID=<?= $Voucher['VoucherID']; ?>" class="btn btn-danger">Delete</a>
+                                                       <button type="submit" name="delete_User" value="<?= $User['UserID'];?>" class="btn btn-danger btn-sm">Delete</button> 
+                                                    
+                                                </td> -->
                                             </tr>
                                             <?php
                                         }
                                     }
                                     else
                                     {
-                                        echo "<h5> No Record Found </h5>";
+                                        echo "<tr><td colspan='5'>No Record Found</td></tr>";
                                     }
-                                ?>
+									?>
 						  </tbody>
+						  <tfoot>
+						  <!-- <tr>
+                                    <td colspan="5">
+                                        <div class="pagination">
+                                            <?php
+                                            // Pagination code starts here
+                                            $records_per_page = 10;
+                                            $total_records = mysqli_num_rows($query_run);
+                                            $total_pages = ceil($total_records / $records_per_page);
+                                            for ($i = 1; $i <= $total_pages; $i++) {
+                                                echo "<a href='Business-ViewRVouchers.php?page=$i'>$i</a> ";
+                                            }
+                                            ?>
+                                    </div>
+                                </td>
+                            </tr> -->
+                        </tfoot>
 						  
 					      
 					   </table>
-					   
-					   <!--
+					
 					   <div class="clearfix">
-					     <div class="hint-text">showing <b>5</b> out of <b>25</b></div>
-					     <ul class="pagination">
-						    <li class="page-item disabled"><a href="#">Previous</a></li>
-							<li class="page-item "><a href="#"class="page-link">1</a></li>
-							<li class="page-item "><a href="#"class="page-link">2</a></li>
-							<li class="page-item active"><a href="#"class="page-link">3</a></li>
-							<li class="page-item "><a href="#"class="page-link">4</a></li>
-							<li class="page-item "><a href="#"class="page-link">5</a></li>
-							<li class="page-item "><a href="#" class="page-link">Next</a></li>
-						 </ul>
-					   </div>
-								-->
+    <div class="hint-text">
+        showing <b><?php echo min($records_per_page, $total_records); ?></b> out of <b><?php echo $total_records; ?></b>
+    </div>
+    <ul class="pagination">
+        <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
+            <a href="Business-ViewRVouchers.php?page=<?php echo ($current_page - 1); ?>" class="page-link">Previous</a>
+        </li>
+        <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+            <li class="page-item <?php echo $i == $current_page ? 'active' : ''; ?>">
+                <a href="Business-ViewRVouchers.php?page=<?php echo $i; ?>" class="page-link"><?php echo $i; ?></a>
+            </li>
+        <?php endfor; ?>
+        <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
+            <a href="Business-ViewRVouchers.php?page=<?php echo ($current_page + 1); ?>" class="page-link">Next</a>
+        </li>
+    </ul>
+</div>
+						
+					   
+					   
+					   
+	
+					   
+					   
+					   
 					   
 					   </div>
 					</div>
@@ -257,38 +316,112 @@
 <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
 
-	<form action="BInsertStock.php" method="POST">
+	<form action="BVoucherSend.php" method="POST">
 	<div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add User</h5>
+        <h5 class="modal-title">Add Voucher reciepient</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="form-group">
-		    <label>Item Name</label>
-			<input type="text" name = "StockName" class="form-control" required="true">
-		</div>
-		<div class="form-group">
-		    <label>Price</label>
-			<input type="text" name="StockPrice" class="form-control" required>
-		</div>
 
-		<div class="form-group">
-		    <label>Quantity</label>
-			<input type="text" name="Quantity" class="form-control" required="true">
+      <div class="modal-body">
+	 <div class="form-group">
+			<label>Voucher Code</label>
+			<input type="text" class="form-control" name="VoucherCode" id="VoucherCode" readonly="readonly" required="required" />
+			<br />
+			<button id="generate" class="btn btn-success" name="generate" type="button"><span class="glyphicon glyphicon-random"></span> Generate</button> 
+			</div>
+
+        <div class="form-group">
+		    <label>Customer Email</label>
+			<input type="text" name = "Email" class="form-control" required="true">
 		</div>
+			<div class="form-group">
+				<label>Discount</label>
+				<input type="number" class="form-control" name="Discount" min="10" required="required"/>
+			</div>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-success" name="add_product">Add</button>
+        <button name="save" class="btn btn-success">Add</button>
       </div>
     </div>
 </form>
   </div>
 </div>
+
+
+
+
+									<!--Voucher redemption modal Start 
+									<div class="modal fade" tabindex="-1" id="VoucherRedeem" role="dialog">
+  <div class="modal-dialog" role="document">
+
+	<form action="RedeemVoucher.php" method="POST">
+	<div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Voucher reciepient</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+			
+	  <div class="form-group">
+		    <label>Product</label>
+			<select id ="Product"  input type="submit" name="Product" class="form-control" required="true">
+				<option value="Select" selected>Select Product</option>
+				<?php
+
+
+
+
+?>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+				<option value="Other">Other</option>
+				</select>
+		</div>
+
+
+
+		<div class="modal-body">
+	 <div class="form-group">
+			<label>Price</label>
+			<input type="text" class="form-control" name="Price" id="Price" readonly="readonly" required="required" />
+			<br />
+			</div>
+
+        <div class="form-group">
+		    <label>Voucher Code</label>
+			<input type="text" name = "VoucherCode" class="form-control" required="true">
+		</div>
+			<div class="form-group">
+				<label>Discount</label>
+				<input type="number" class="form-control" name="Discount" min="10" required="required"/>
+			</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button name="save" class="btn btn-success">Add</button>
+      </div>
+    </div>
+</form>
+  </div>
+</div>
+
+-->
+
+
+<!-- Voucher redemption end -->
+
+
+
+
 
 					   <!----edit-modal end--------->
 					   
@@ -298,38 +431,28 @@
 					   
 				   <!----edit-modal start--------->
 		<div class="modal fade" tabindex="-1" id="editEmployeeModal" role="dialog">
+			<form action="Voucheredit.php" method="POST">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit Employees</h5>
+        <h5 class="modal-title">Edit Voucher</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-		    <label>Name</label>
+		    <label>Status</label>
 			<input type="text" class="form-control" required>
 		</div>
-		<div class="form-group">
-		    <label>Email</label>
-			<input type="emil" class="form-control" required>
-		</div>
-		<div class="form-group">
-		    <label>Address</label>
-			<textarea class="form-control" required></textarea>
-		</div>
-		<div class="form-group">
-		    <label>Phone</label>
-			<input type="text" class="form-control" required>
-		</div>
-      </div>
+		
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success" name = "update_product">Save</button>
+        <button type="submit" class="btn btn-success">Save</button>
       </div>
     </div>
   </div>
+</form>
 </div>
 
 					   <!----edit-modal end--------->	   
@@ -338,9 +461,10 @@
 					 <!----delete-modal start--------->
 		<div class="modal fade" tabindex="-1" id="deleteEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
+	<form action="Voucherdelete.php" method="post">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Delete Employees</h5>
+        <h5 class="modal-title">Delete Voucher</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -354,6 +478,7 @@
         <button type="submit" class="btn btn-success">Delete</button>
       </div>
     </div>
+</form>
   </div>
 </div>
 
@@ -397,12 +522,21 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
    <script src="js/jquery-3.3.1.slim.min.js"></script>
    <script src="js/popper.min.js"></script>
+   <script src="Generate Coupon Code/js/bootstrap.js"></script>
    <script src="js/bootstrap.min.js"></script>
    <script src="js/jquery-3.3.1.min.js"></script>
+   
   
   
-  <script type="text/javascript">
+   <script type="text/javascript">
        $(document).ready(function(){
+
+		$('#generate').on('click', function(){
+			$.get("GenerateVouchercode.php", function(data){
+				$('#VoucherCode').val(data);
+			});
+		});
+
 	      $(".xp-menubar").on('click',function(){
 		    $("#sidebar").toggleClass('active');
 			$("#content").toggleClass('active');

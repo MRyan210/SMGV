@@ -26,7 +26,7 @@ require 'conn.php';
                 <div class="card">
                     <div class="card-header">
                         <h4>Delete Voucher
-                            <a href="Admin-Manage Vouchers.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="Business-Manage Vouchers.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -42,7 +42,7 @@ require 'conn.php';
                             {
                                 $Voucher = mysqli_fetch_array($query_run);
                                 ?>
-                                <form action="crudVoucher.php" method="POST">
+                                <form action="BcrudVoucher.php" method="POST">
                                     <input type="hidden" readonly name="VoucherID" value="<?= $Voucher['VoucherID']; ?>">
 
                                     <div class="mb-3">

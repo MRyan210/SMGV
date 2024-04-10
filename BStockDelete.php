@@ -25,8 +25,8 @@ require 'conn.php';
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Student Edit 
-                            <a href="Business- Manage Stocks.php" class="btn btn-danger float-end">BACK</a>
+                        <h4>Delete Item
+                            <a href="Business-Manage Stocks.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -42,7 +42,7 @@ require 'conn.php';
                             {
                                 $Stock = mysqli_fetch_array($query_run);
                                 ?>
-                                <form action="crudStocks.php" method="POST">
+                                <form action="BcrudStocks.php" method="POST">
                                     <input type="hidden" readonly name="StockID" value="<?= $Stock['StockID']; ?>">
 
                                     <div class="mb-3">

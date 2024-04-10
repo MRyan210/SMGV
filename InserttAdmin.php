@@ -5,7 +5,7 @@ require 'conn.php';
 $FirstName = $_POST["FirstName"];
 $LastName = $_POST["LastName"];
 $Email = $_POST["Email"];
-$DateofBirth = date('yyyy-mm-dd', strtotime($_POST["DateofBirth"]));
+$DateofBirth = date('y-m-d', strtotime($_POST["DateofBirth"]));
 $NationalID =$_POST["NationalID"];
 $Gender=$_POST["Gender"];
 $PhoneNumber = $_POST["PhoneNumber"];

@@ -94,6 +94,18 @@
 		  </ul>
 		  </li>
 
+		  <li class="dropdown">
+		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
+		  class="dropdown-toggle">
+		  <i class="material-icons">summarize</i>Reporting
+		  </a>
+		</li>
+		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
+			 <li><a href="Business-ViewRVouchers.php">View Redeemed Vouchers</a></li>
+			 <li><a href="Business-ViewOrders.php">View Past Orders</a></li>
+		  </ul>
+		  </li>
+
 		  
 		   <!-- <li class="dropdown">
 		  <a href="#homeSubmenu5" data-toggle="collapse" aria-expanded="false" 

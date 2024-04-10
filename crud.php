@@ -32,6 +32,7 @@ if(isset($_POST['delete_User']))
 if(isset($_POST['update_User']))
 {
     
+    $DateofBirth = date('Y-m-d', strtotime($_POST['DateofBirth']));
 
     $FirstName = mysqli_real_escape_string($conn, $_POST['FirstName']);
     $LastName = mysqli_real_escape_string($conn, $_POST['LastName']);

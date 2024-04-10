@@ -62,7 +62,6 @@ session_start();
 		   <li class="dropdown">
 		  <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" 
 		  class="dropdown-toggle">
-		  <li class="active">
 		  <i class="material-icons">redeem</i>Vouchering
 		  </a>
 		</li>
@@ -70,6 +69,19 @@ session_start();
 			 <li><a href="Business-Manage Vouchers.php">Manage Active vouchers</a></li>
 			 <li><a href="Business-ViewRVouchers.php">View Redeemed Vouchers</a></li>
 			 <li><a href="BRedeemVoucher.php">Redeem vouchers</a></li>
+		  </ul>
+		  </li>
+
+		  <li class="dropdown">
+		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
+		  class="dropdown-toggle">
+		  <li class="active">
+		  <i class="material-icons">summarize</i>Reporting
+		  </a>
+		</li>
+		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
+			 <li><a href="Business-ViewRVouchers.php">View Redeemed Vouchers</a></li>
+			 <li><a href="Business-ViewOrders.php">View Past Orders</a></li>
 		  </ul>
 		  </li>
 		  
@@ -142,7 +154,7 @@ session_start();
 				 </div>
 				 
 				 <div class="xp-breadcrumbbar text-center">
-				    <h4 class="page-title">Dashboard-Manage Vouchers</h4>
+				    <h4 class="page-title">Dashboard-Reporting</Dashboard-Reporting></h4>
 					<ol class="breadcrumb">
 					  <li class="breadcrumb-item active" aria-curent="page"> Business Dashboard</li>
 					</ol>
@@ -191,25 +203,32 @@ session_start();
 					      <thead>
 						     <tr>
 							
-							 <th>DateCreated</th>
-							
-							 <th>Voucher Code</th>
-							 <th>Email</th>
-							 <th>Price Off</th>
-							 <th>Status</th>
+							 <th style="font-weight: bold;">DateCreated</th>
+							 <th style="font-weight: bold;">Voucher Code</th>
+							 <th style="font-weight: bold;">Email</th>
+							 <th style="font-weight: bold;">Price Off</th>
+							 <th style="font-weight: bold;">Status</th>
 							 </tr>
 						  </thead>
 						  
 						 <!--to Put Menu Dashboards here-->
 						 <tbody>
 						 <?php 
-                                    $query = "SELECT * FROM vouchercode WHERE Status = 'Redeemed' AND DateCreated > '2023-08-23 19:00:50' ";
-                                    $query_run = mysqli_query($conn, $query);
+                                  // Pagination code starts here
+                            // Number of records per page
+                            $records_per_page = 15;
 
-                                    if(mysqli_num_rows($query_run) > 0)
-                                    {
-                                        foreach($query_run as $Voucher)
-                                        {
+                            // Get the current page number from the URL parameter
+                            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                            $start_from = ($current_page - 1) * $records_per_page;
+
+                            // SQL query with LIMIT clause
+                            $query = "SELECT * FROM vouchercode WHERE Status = 'Redeemed' AND DateCreated > '2023-08-23 19:00:50' ORDER BY DateCreated DESC";
+                            $query_run = mysqli_query($conn, $query);
+
+                            // Fetch and display records
+                            if (mysqli_num_rows($query_run) > 0) {
+                                foreach ($query_run as $Voucher) {
                                             ?>
                                             <tr>
                                                 <td><?= $Voucher['DateCreated']; ?></td>
@@ -217,11 +236,6 @@ session_start();
 												<td><?= $Voucher['Email']; ?></td>
 												<td><?= $Voucher['Discount']; ?>%</td>
 												<td><?= $Voucher['Status']; ?></td>
-												
-												
-												
-                                                
-												
                                                 <td>
                                                   <!--  <a href="student-view.php?UserID=" class="btn btn-info btn-sm">View</a> -->
 
@@ -238,30 +252,50 @@ session_start();
                                     }
                                     else
                                     {
-                                        echo "<h5> No Record Found </h5>";
+                                        echo "<tr><td colspan='5'>No Record Found</td></tr>";
                                     }
-                                ?>
-
-						  
-						     
+									?>
 						  </tbody>
+						  <tfoot>
+						  <!-- <tr>
+                                    <td colspan="5">
+                                        <div class="pagination">
+                                            <?php
+                                            // Pagination code starts here
+                                            $records_per_page = 10;
+                                            $total_records = mysqli_num_rows($query_run);
+                                            $total_pages = ceil($total_records / $records_per_page);
+                                            for ($i = 1; $i <= $total_pages; $i++) {
+                                                echo "<a href='Business-ViewRVouchers.php?page=$i'>$i</a> ";
+                                            }
+                                            ?>
+                                    </div>
+                                </td>
+                            </tr> -->
+                        </tfoot>
 						  
 					      
 					   </table>
-					   <!--
+					
 					   <div class="clearfix">
-					     <div class="hint-text">showing <b>5</b> out of <b>25</b></div>
-					     <ul class="pagination">
-						    <li class="page-item disabled"><a href="#">Previous</a></li>
-							<li class="page-item "><a href="#"class="page-link">1</a></li>
-							<li class="page-item "><a href="#"class="page-link">2</a></li>
-							<li class="page-item active"><a href="#"class="page-link">3</a></li>
-							<li class="page-item "><a href="#"class="page-link">4</a></li>
-							<li class="page-item "><a href="#"class="page-link">5</a></li>
-							<li class="page-item "><a href="#" class="page-link">Next</a></li>
-						 </ul>
-					   </div>
-								-->
+    <div class="hint-text">
+        showing <b><?php echo min($records_per_page, $total_records); ?></b> out of <b><?php echo $total_records; ?></b>
+    </div>
+    <ul class="pagination">
+        <li class="page-item <?php echo $current_page == 1 ? 'disabled' : ''; ?>">
+            <a href="Business-ViewRVouchers.php?page=<?php echo ($current_page - 1); ?>" class="page-link">Previous</a>
+        </li>
+        <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+            <li class="page-item <?php echo $i == $current_page ? 'active' : ''; ?>">
+                <a href="Business-ViewRVouchers.php?page=<?php echo $i; ?>" class="page-link"><?php echo $i; ?></a>
+            </li>
+        <?php endfor; ?>
+        <li class="page-item <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>">
+            <a href="Business-ViewRVouchers.php?page=<?php echo ($current_page + 1); ?>" class="page-link">Next</a>
+        </li>
+    </ul>
+</div>
+						
 					   
 					   
 					   

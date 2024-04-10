@@ -15,13 +15,13 @@ if(isset($_POST['delete_Voucher']))
     if($query_run)
     {
         $_SESSION['message'] = "Voucher Deleted Successfully";
-        header("Location: Admin-Manage Vouchers.php");
+        header("Location: Business-Manage Vouchers.php");
         exit(0);
     }
     else
     {
         $_SESSION['message'] = "Voucher Not Deleted";
-        header("Location: Admin-Manage Vouchers.php");
+        header("Location: Business-Manage Vouchers.php");
         exit(0);
     }
 }
@@ -44,13 +44,13 @@ if(isset($_POST['update_Voucher']))
     if($query_run)
     {
         $_SESSION['message'] = "Voucher Redeemed Successfully";
-        header("Location: Admin-Manage Vouchers.php");
+        header("Location: Business-Manage Vouchers.php");
         exit(0);
     }
     else
     {
         $_SESSION['message'] = "Student Not Updated";
-        header("Location: Admin-Manage Vouchers.php");
+        header("Location: Business-Manage Vouchers.php");
         exit(0);
     }
 

@@ -271,7 +271,7 @@ session_start();
 
 						  <tbody>
 						  <?php 
-                                    $query = "SELECT * FROM user WHERE Status = 1";
+                                    $query = "SELECT * FROM user WHERE Status = 1 ORDER BY DateCreated DESC";
                                     $query_run = mysqli_query($conn, $query);
 
                                     if(mysqli_num_rows($query_run) > 0)
@@ -291,8 +291,6 @@ session_start();
                                                 
 												
                                                 <td>
-                                                  <!--  <a href="student-view.php?UserID=" class="btn btn-info btn-sm">View</a> -->
-
                                                     <a href="UserEdit.php?UserID=<?= $User['UserID']; ?>" class="btn btn-success btn-sm">Edit</a>
 
 													<!-- Delete section -->

@@ -71,6 +71,18 @@ session_start();
 			 <li><a href="BRedeemVoucher.php">Redeem vouchers</a></li>
 		  </ul>
 		  </li>
+
+		  <li class="dropdown">
+		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
+		  class="dropdown-toggle">
+		  <i class="material-icons">summarize</i>Reporting
+		  </a>
+		</li>
+		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
+			 <li><a href="Business-ViewRVouchers.php">View Redeemed Vouchers</a></li>
+			 <li><a href="Business-ViewOrders.php">View Past Orders</a></li>
+		  </ul>
+		  </li>
 		  
 		   
 	 </div>
@@ -302,7 +314,7 @@ session_start();
 		</div>
 			<div class="form-group">
 				<label>Discount</label>
-				<input type="number" class="form-control" name="Discount" min="10" required="required"/>
+				<input type="number" class="form-control" name="Discount" min="10" max="50" required="required"/>
 			</div>
 
       </div>

@@ -26,7 +26,7 @@ require 'conn.php';
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Stock
-                            <a href="Admin-Manage Stocks.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="Business-Manage Stocks.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">

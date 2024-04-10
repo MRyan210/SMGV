@@ -1,7 +1,36 @@
 <?php 
 	require 'conn.php';
-	session_start()
+	session_start();
 
+
+	$select_rows = mysqli_query($conn, "SELECT * FROM `stockitem`") or die('query failed');
+	$row_count = mysqli_num_rows($select_rows);
+
+	if(isset($_POST['add_to_cart'])){
+		$product_name = $_POST['product_name'];
+		$product_price = $_POST['product_price'];
+		$product_quantity = 1;
+		
+		$select_stock_query = "SELECT StockID FROM stockitem WHERE StockName = '$product_name'";
+		$result = mysqli_query($conn, $select_stock_query);
+		
+		if(mysqli_num_rows($result) > 0) {
+			// Fetch the StockID
+			$row = mysqli_fetch_assoc($result);
+			$stock_id = $row['StockID'];
+		
+			// Insert data into the cart table with the fetched StockID
+			$insert_product_query = "INSERT INTO `cart` (StockID,Name, price, quantity) VALUES ('$stock_id','$product_name', '$product_price', '$product_quantity')";
+			if(mysqli_query($conn, $insert_product_query)) {
+				$message[] = 'Product added to cart successfully';
+			} else {
+				$message[] = 'Failed to add product to cart';
+			}
+		} else {
+			$message[] = 'Product not found in stockitem table';
+		}
+	}
+	 
 
 ?>
 
@@ -71,6 +100,18 @@
 			 <li><a href="Business-Manage Vouchers.php">Manage vouchers</a></li>
              <li><a href="BRedeemVoucher.php">Redeem vouchers</a></li>
 </li>
+		  </ul>
+		  </li>
+
+		  <li class="dropdown">
+		  <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" 
+		  class="dropdown-toggle">
+		  <i class="material-icons">summarize</i>Reporting
+		  </a>
+		</li>
+		  <ul class="collapse list-unstyled menu" id="homeSubmenu3">
+			 <li><a href="Business-ViewRVouchers.php">View Redeemed Vouchers</a></li>
+			 <li><a href="Business-ViewOrders.php">View Past Orders</a></li>
 		  </ul>
 		  </li>
 		  
@@ -167,63 +208,64 @@
 						     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
 							    <h2 class="ml-lg-2">Redeem Voucher</h2>
 							 </div>
-							 <!-- <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
-							   <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
-							   <i class="material-icons">&#xE147;</i>
-							   <span>Add Stock Item</span>
+							  <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
+
+							  <a href="cart.php" class="btn btn-success"> 
+							  <span>
+        <?php 
+            $cart_rows_query = mysqli_query($conn, "SELECT COUNT(*) AS cart_count FROM `cart`");
+            $cart_row = mysqli_fetch_assoc($cart_rows_query);
+            echo $cart_row['cart_count']; 
+        ?>
+    </span> Cart  
+							
+							</a>
+							  <!-- <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"> -->
+							 <!--  <i class="material-icons">&#xE147;</i> -->
+							   
 							   </a>
-							   <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
-							   <i class="material-icons">&#xE15C;</i>
-							   <span>Delete</span>
-							   </a>
-							 </div>-->
+							   
+							 </div>
 					     </div>
 					   </div> 
-					   
 					   <table class="table table-striped table-hover">
-					      <thead>
+		  <thead>
 						     <tr>
-							 
 							 <th>Item Name</th>
 							 <th>Price</th>
 							 <th>Quantity</th>
 							 </tr>
 						  </thead>
-						  
-						 <!--to Put Menu Dashboards here-->
 						  <tbody>
-						  <?php 
-                                    $query = "SELECT * FROM stockitem WHERE Quantity >= 0";
-                                    $query_run = mysqli_query($conn, $query);
+					   <?php
+      
+      $select_products = mysqli_query($conn, "SELECT * FROM `stockitem`WHERE `Quantity` >0 ");
+      if(mysqli_num_rows($select_products) > 0){
+         while($fetch_product = mysqli_fetch_assoc($select_products)){
+      ?>
+		<tr>
+            <td><?php echo $fetch_product['StockName']; ?></td>
+            <td class="price">Ksh <?php echo  number_format($fetch_product['StockPrice']); ?>/-</td>
+			<td><?php echo $fetch_product['Quantity']; ?></td>
+			<td>
 
-                                    if(mysqli_num_rows($query_run) > 0)
-                                    {
-                                        foreach($query_run as $User)
-                                        {
-                                            ?>
-                                            <tr>
-											    <td><?= $User['StockName']; ?></td>
-                                                <td><?= $User['StockPrice']; ?></td>
-                                                <td><?= $User['Quantity']; ?></td>
-                                                <td>
-                                                    <a href="BVoucher.php?StockID=<?= $User['StockID']; ?>" class="btn btn-success btn-sm">Select</a>
+			<form action="" method="post">
 
-													<!-- Delete section -->
-													
-                                                </td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    }
-                                    else
-                                    {
-                                        echo "<h5> No Record Found </h5>";
-                                    }
-                                ?>
-						  </tbody>
-						  
-					      
-					   </table>
+          <input type="hidden" name="product_name" value="<?php echo $fetch_product['StockName']; ?>"> 
+		  <input type="hidden" name="product_price" value="<?php echo $fetch_product['StockPrice']; ?>"> 
+		  <input type="submit" class="btn btn-success" value="Add to cart" name="add_to_cart"> 
+		   </form>
+		 </td>
+		</tr>
+
+					
+      <?php
+         };
+      };
+      ?>
+	  	  </tbody>
+	  </table>
+	  
 					   
 					   <!--
 					   <div class="clearfix">

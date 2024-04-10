@@ -36,7 +36,7 @@ require 'conn.php';
                 <div class="card">
                     <div class="card-header">
                         <h4>Redeem Voucher
-                            <a href="BRedeemVoucher.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="Business-Manage Vouchers.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -84,7 +84,7 @@ require 'conn.php';
 				<br style="clear:both;"/>
 				<a class="btn btn-primary" id="activate" >Check Code</a>
 				
-				<button type="submit" class="btn btn-primary" name="update_Voucher" id="redeem">Checkout</button>
+				<button type="submit" class="btn btn-primary" name="update_Voucher" id="redeem">Redeem Code</button>
 	
 				</form>
 

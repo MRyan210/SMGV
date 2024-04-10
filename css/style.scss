@@ -908,3 +908,32 @@ a:focus {
 }
 
 // end footer section
+.display-order{
+  max-width: 50rem;
+  background-color: var(--white);
+  border-radius: .5rem;
+  text-align: center;
+  padding:1.5rem;
+  margin:0 auto;
+  margin-bottom: 2rem;
+  box-shadow: var(--box-shadow);
+  border:var(--border);
+}
+
+.display-order span{
+  display: inline-block;
+  border-radius: .5rem;
+  background-color: var(--bg-color);
+  padding:.5rem 1.5rem;
+  font-size: 2rem;
+  color:var(--black);
+  margin:.5rem;
+}
+
+.display-order span.grand-total{
+  width: 100%;
+  background-color: var(--red);
+  color:var(--white);
+  padding:1rem;
+  margin-top: 1rem;
+}
