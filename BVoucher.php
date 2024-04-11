@@ -115,34 +115,53 @@ require 'conn.php';
     <script type="text/javascript">
 		
        $(document).ready(function(){
+   // Store the original price when the page loads
+   var originalPrice = parseFloat($('#total').val());
 
-		$('#activate').on('click', function(){
-			var coupon = $('#VoucherCode').val();
-			var price = parseFloat($('#total').val());
-			if(coupon == ""){
-				alert("Please enter a coupon code!");
-			}else{
-				$.post('getVoucher.php', {VoucherCode: coupon, StockPrice: price}, function(data){
-					if(data == "error"){
-						alert("Invalid Coupon Code!");
-						$('#total').val(price);
-						$('#result').html('');
-					}else{
-						var json = JSON.parse(data);
-						$('#result').html("<h4 class='pull-right text-danger'>"+json.Discount+"% Off</h4>");
-						$('#total').val(json.StockPrice);
-					}
-				});
-			}
-		});
+// Function to handle voucher code activation
+$('#activate').one('click', function(){
+	var coupon = $('#VoucherCode').val().trim();
+	var price = parseFloat($('#total').val());
+	if(coupon == ""){
+		alert("Please enter a Voucher code!");
+		return;
+	}
+	var button = $(this);
+	button.prop('disabled', true);
+	$.post('getVoucher.php', {VoucherCode: coupon, StockPrice: price}, function(data){
+		if(data == "error"){
+			alert("Invalid Voucher Code!");
+			$('#result').html('');
+		}else{
+			var json = JSON.parse(data);
+			$('#result').html("<h4 class='pull-right text-danger'>"+json.Discount+"% Off</h4>");
+			$('#total').val(json.StockPrice);
+		}
+	}).always(function(){
+		button.prop('disabled',false);
+	});
+});
 
+// Function to handle voucher code generation
+$('#generate').on('click', function(){
+	$.get("getVoucher.php", function(data){
+		$('#VoucherCode').val(data);
+	});
+});
 
-		$('#generate').on('click', function(){
-			$.get("getVoucher.php", function(data){
-				$('#VoucherCode').val(data);
-			});
-		});
-    });
+// Event handler to revert total price when voucher code field is empty
+$('#VoucherCode').on('input', function(){
+	var coupon = $(this).val().trim();
+	if(coupon === ""){
+		$('#result').html(''); // Clear discount display
+		// Only revert to original price if the total has been updated by a voucher code
+		var currentPrice = parseFloat($('#total').val());
+		if (currentPrice !== originalPrice) {
+			$('#total').val(originalPrice);
+		}
+	}
+});
+});
   </script>
   
 

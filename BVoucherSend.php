@@ -27,7 +27,7 @@ if(ISSET($_POST['save'])){
         echo "<script>window.location = 'Business-Manage Vouchers.php'</script>";
     }else{
         mysqli_query($conn, "INSERT INTO `vouchercode`(`Email`,`VoucherCode`, `Discount`, `Status`) VALUES('$Email', '$VoucherCode', '$Discount', '$Status')") or die(mysqli_error());
-        echo "<script>alert('Coupon Saved!')</script>";
+        echo "<script>alert('Voucher Code has been Sent!')</script>";
         echo "<script>window.location = 'Business-Manage Vouchers.php'</script>";
 
     }

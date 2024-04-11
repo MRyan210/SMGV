@@ -85,7 +85,7 @@ if(isset($_GET['delete_all'])){
                   <input type="submit" value="update" name="update_update_btn" class = "btn btn-success btn-sm">
                </form>   
             </td>
-            <td>Ksh<?php echo $sub_total = $fetch_cart['Price'] * $fetch_cart['Quantity']; ?>/-</td>
+            <td>Ksh<?php echo number_format($sub_total = $fetch_cart['Price'] * $fetch_cart['Quantity']); ?>/-</td>
             <td><a href="cart.php?remove=<?php echo $fetch_cart['CartID']; ?>" onclick="return confirm('remove item from cart?')" class="btn btn-danger float-end"> <i class="fas fa-trash"></i> remove</a></td>
          </tr>
          <?php
@@ -96,7 +96,7 @@ if(isset($_GET['delete_all'])){
          <form style="padding: 10px 20px 10px 0px;">
           <div class="form-group">
             <th colspan="4">Grand Total</th>
-            <td>Ksh<?php echo $grand_total; ?>/-</td>
+            <td>Ksh<?php echo number_format($grand_total); ?>/-</td>
       
          </form>
       </tbody>

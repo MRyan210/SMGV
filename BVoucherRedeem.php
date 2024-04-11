@@ -42,7 +42,7 @@ $cart_query = mysqli_query($conn, "SELECT * FROM `cart`");
         $result_email = mysqli_query($conn, $email_query);
         $last_order_email = mysqli_fetch_assoc($result_email)['Email'];
 
-	$order_id_query = "SELECT OrderID FROM Orders WHERE Email = '$last_order_email'";
+	$order_id_query = "SELECT OrderID FROM Orders WHERE Email = '$last_order_email' ORDER BY DateCreated DESC";
         $order_id_result = mysqli_query($conn, $order_id_query);
         $last_order_id = mysqli_fetch_assoc($order_id_result)['OrderID'];
 
